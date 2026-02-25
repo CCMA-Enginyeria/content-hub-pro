@@ -26,7 +26,6 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
   const [isActive, setIsActive] = useState(category?.isActive ?? true);
   const [isVisibleOnPublication, setIsVisibleOnPublication] = useState(category?.isVisibleOnPublication ?? true);
 
-  // Auto-generate textId from name if creating
   useEffect(() => {
     if (!isEditing && name) {
       setTextId(
@@ -40,7 +39,6 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
     }
   }, [name, isEditing]);
 
-  // Exclude self and descendants from parent options
   const getDescendantIds = (id: string): string[] => {
     const children = allCategories.filter((c) => c.parentId === id);
     return [id, ...children.flatMap((c) => getDescendantIds(c.id))];
@@ -60,8 +58,8 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
 
   return (
     <form onSubmit={handleSubmit} className="animate-slide-in space-y-5">
-      <div className="flex items-center justify-between">
-        <h2 className="text-xl font-semibold tracking-tight">
+      <div className="flex items-center justify-between border-b pb-3">
+        <h2 className="text-lg font-semibold tracking-tight text-foreground uppercase">
           {isEditing ? 'Editar categoria' : 'Nova categoria'}
         </h2>
         <Button type="button" variant="ghost" size="icon" onClick={onCancel}>
@@ -71,23 +69,23 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
 
       <div className="space-y-4">
         <div className="space-y-2">
-          <Label htmlFor="name">Nom *</Label>
+          <Label htmlFor="name" className="uppercase text-xs tracking-wider font-semibold">Nom *</Label>
           <Input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Nom de la categoria" required />
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="textId">Identificador textual *</Label>
+          <Label htmlFor="textId" className="uppercase text-xs tracking-wider font-semibold">Identificador textual *</Label>
           <Input id="textId" value={textId} onChange={(e) => setTextId(e.target.value)} placeholder="identificador-unic" className="font-mono text-sm" required />
           <p className="text-xs text-muted-foreground">Identificador únic per a ús intern i URLs.</p>
         </div>
 
         <div className="space-y-2">
-          <Label htmlFor="description">Descripció</Label>
+          <Label htmlFor="description" className="uppercase text-xs tracking-wider font-semibold">Descripció</Label>
           <Textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Descripció de la categoria..." rows={3} />
         </div>
 
         <div className="space-y-2">
-          <Label>Categoria pare</Label>
+          <Label className="uppercase text-xs tracking-wider font-semibold">Categoria pare</Label>
           <Select value={parentId ?? '__none__'} onValueChange={(v) => setParentId(v === '__none__' ? null : v)}>
             <SelectTrigger>
               <SelectValue placeholder="Cap (arrel)" />
@@ -103,7 +101,7 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
           </Select>
         </div>
 
-        <div className="flex items-center justify-between rounded-lg border bg-card p-4">
+        <div className="flex items-center justify-between rounded-lg border bg-muted/30 p-4">
           <div>
             <Label htmlFor="isActive" className="text-sm font-medium">Activa</Label>
             <p className="text-xs text-muted-foreground">La categoria es pot fer servir per etiquetar continguts.</p>
@@ -111,7 +109,7 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
           <Switch id="isActive" checked={isActive} onCheckedChange={setIsActive} />
         </div>
 
-        <div className="flex items-center justify-between rounded-lg border bg-card p-4">
+        <div className="flex items-center justify-between rounded-lg border bg-muted/30 p-4">
           <div>
             <Label htmlFor="isVisible" className="text-sm font-medium">Visible a publicació</Label>
             <p className="text-xs text-muted-foreground">La categoria apareix al web públic.</p>
@@ -121,8 +119,8 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
       </div>
 
       <div className="flex gap-3 pt-2">
-        <Button type="submit" className="flex-1">
-          {isEditing ? 'Desar canvis' : 'Crear categoria'}
+        <Button type="submit" className="flex-1 bg-accent text-accent-foreground hover:bg-accent/90 font-semibold">
+          {isEditing ? 'Desa canvis' : 'Crear categoria'}
         </Button>
         <Button type="button" variant="outline" onClick={onCancel}>
           Cancel·lar

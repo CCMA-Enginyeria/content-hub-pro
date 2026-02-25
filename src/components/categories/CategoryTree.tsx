@@ -22,10 +22,10 @@ function CategoryTreeItem({ category, getChildren, selectedId, onSelect, level =
       <button
         onClick={() => onSelect(category.id)}
         className={cn(
-          'flex w-full items-center gap-1.5 rounded-md px-2 py-1.5 text-sm transition-colors text-left',
+          'flex w-full items-center gap-1.5 rounded-md px-2 py-2 text-sm transition-colors text-left',
           isSelected
-            ? 'bg-primary/10 text-primary font-medium'
-            : 'text-foreground hover:bg-accent'
+            ? 'bg-primary/10 text-primary font-medium border-l-2 border-primary'
+            : 'text-foreground hover:bg-muted'
         )}
         style={{ paddingLeft: `${level * 16 + 8}px` }}
       >
@@ -35,7 +35,7 @@ function CategoryTreeItem({ category, getChildren, selectedId, onSelect, level =
               e.stopPropagation();
               setExpanded(!expanded);
             }}
-            className="shrink-0 p-0.5 rounded hover:bg-accent"
+            className="shrink-0 p-0.5 rounded hover:bg-muted"
           >
             {expanded ? (
               <ChevronDown className="h-3.5 w-3.5 text-muted-foreground" />
@@ -47,7 +47,7 @@ function CategoryTreeItem({ category, getChildren, selectedId, onSelect, level =
           <span className="w-[18px]" />
         )}
         {expanded && hasChildren ? (
-          <FolderOpen className="h-4 w-4 shrink-0 text-primary/70" />
+          <FolderOpen className="h-4 w-4 shrink-0 text-accent" />
         ) : (
           <Folder className="h-4 w-4 shrink-0 text-muted-foreground" />
         )}
