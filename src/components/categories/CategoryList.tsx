@@ -1,6 +1,6 @@
 import { Category } from '@/types/category';
 import { Badge } from '@/components/ui/badge';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, Pencil, Trash2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface CategoryListProps {
@@ -26,31 +26,42 @@ export function CategoryList({ categories, selectedId, onSelect, allCategories }
     <div className="overflow-hidden rounded-lg border">
       <table className="w-full text-sm">
         <thead>
-          <tr className="border-b bg-muted/50">
-            <th className="px-4 py-2.5 text-left font-medium text-muted-foreground">Nom</th>
-            <th className="px-4 py-2.5 text-left font-medium text-muted-foreground hidden md:table-cell">ID textual</th>
-            <th className="px-4 py-2.5 text-left font-medium text-muted-foreground hidden lg:table-cell">Pare</th>
-            <th className="px-4 py-2.5 text-center font-medium text-muted-foreground">Estat</th>
-            <th className="px-4 py-2.5 text-center font-medium text-muted-foreground hidden sm:table-cell">Visible</th>
+          <tr className="border-b bg-primary/5">
+            <th className="px-4 py-2.5 text-left font-semibold text-foreground uppercase text-xs tracking-wider">Nom</th>
+            <th className="px-4 py-2.5 text-left font-semibold text-foreground uppercase text-xs tracking-wider hidden md:table-cell">ID textual</th>
+            <th className="px-4 py-2.5 text-left font-semibold text-foreground uppercase text-xs tracking-wider hidden lg:table-cell">Pare</th>
+            <th className="px-4 py-2.5 text-center font-semibold text-foreground uppercase text-xs tracking-wider">Estat</th>
+            <th className="px-4 py-2.5 text-center font-semibold text-foreground uppercase text-xs tracking-wider hidden sm:table-cell">Visible</th>
           </tr>
         </thead>
         <tbody>
-          {categories.map((cat) => (
+          {categories.map((cat, i) => (
             <tr
               key={cat.id}
               onClick={() => onSelect(cat.id)}
               className={cn(
                 'cursor-pointer border-b transition-colors last:border-0',
                 selectedId === cat.id
-                  ? 'bg-primary/5'
-                  : 'hover:bg-accent/50'
+                  ? 'bg-accent/15'
+                  : i % 2 === 0
+                    ? 'bg-card'
+                    : 'bg-muted/30',
+                'hover:bg-accent/10'
               )}
             >
               <td className="px-4 py-3 font-medium">{cat.name}</td>
               <td className="px-4 py-3 font-mono text-xs text-muted-foreground hidden md:table-cell">{cat.textId}</td>
               <td className="px-4 py-3 text-muted-foreground hidden lg:table-cell">{getParentName(cat.parentId)}</td>
               <td className="px-4 py-3 text-center">
-                <Badge variant={cat.isActive ? 'default' : 'secondary'} className={cn('text-[11px]', cat.isActive && 'bg-success hover:bg-success/90')}>
+                <Badge
+                  variant={cat.isActive ? 'default' : 'secondary'}
+                  className={cn(
+                    'text-[11px] font-semibold uppercase',
+                    cat.isActive
+                      ? 'bg-success hover:bg-success/90'
+                      : ''
+                  )}
+                >
                   {cat.isActive ? 'Activa' : 'Inactiva'}
                 </Badge>
               </td>

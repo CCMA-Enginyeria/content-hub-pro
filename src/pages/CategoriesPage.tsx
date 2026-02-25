@@ -16,7 +16,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
-import { Search, Plus, LayoutList, TreePine, Tags } from 'lucide-react';
+import { Search, Plus, LayoutList, TreePine, Tags, Folder } from 'lucide-react';
 
 type View = 'tree' | 'list';
 type Panel = 'detail' | 'create' | 'edit' | null;
@@ -66,21 +66,21 @@ export default function CategoriesPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Header */}
-      <header className="sticky top-0 z-10 border-b bg-card/80 backdrop-blur-sm">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+      {/* Header — purple bar matching DTY */}
+      <header className="sticky top-0 z-10 bg-primary text-primary-foreground shadow-md">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground">
               <Tags className="h-5 w-5" />
             </div>
             <div>
               <h1 className="text-lg font-semibold tracking-tight">Gestió de categories</h1>
-              <p className="text-xs text-muted-foreground">{categories.length} categories</p>
+              <p className="text-xs text-primary-foreground/70">{categories.length} categories</p>
             </div>
           </div>
-          <Button onClick={handleCreate} size="sm">
+          <Button onClick={handleCreate} size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold">
             <Plus className="mr-1.5 h-4 w-4" />
-            Nova categoria
+            Crea nou
           </Button>
         </div>
       </header>
@@ -122,7 +122,7 @@ export default function CategoriesPage() {
         {/* Content */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1fr_400px]">
           {/* Left: Tree or List */}
-          <div className="rounded-xl border bg-card p-4">
+          <div className="rounded-xl border bg-card p-4 shadow-sm">
             {view === 'tree' ? (
               searchQuery ? (
                 <CategoryList
@@ -150,7 +150,7 @@ export default function CategoriesPage() {
           </div>
 
           {/* Right: Detail / Form */}
-          <div className="rounded-xl border bg-card p-5">
+          <div className="rounded-xl border bg-card p-5 shadow-sm">
             {panel === 'detail' && selectedCategory ? (
               <CategoryDetail
                 category={selectedCategory}
@@ -180,7 +180,7 @@ export default function CategoriesPage() {
               />
             ) : (
               <div className="flex flex-col items-center justify-center py-20 text-center text-muted-foreground">
-                <Tags className="mb-3 h-10 w-10 opacity-30" />
+                <Folder className="mb-3 h-10 w-10 opacity-30" />
                 <p className="text-sm">Selecciona una categoria per veure els detalls</p>
                 <p className="mt-1 text-xs">o crea'n una de nova</p>
               </div>
