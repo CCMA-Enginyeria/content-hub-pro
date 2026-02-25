@@ -7,8 +7,8 @@ import {
   Settings,
   Star,
   ChevronDown,
-  LayoutDashboard,
 } from 'lucide-react';
+import dtyLogo from '@/assets/dty-logo.svg';
 import { NavLink } from '@/components/NavLink';
 import {
   Sidebar,
@@ -98,9 +98,7 @@ export function AppSidebar() {
     <Sidebar collapsible="icon">
       <SidebarHeader className="p-4">
         <div className="flex items-center gap-2.5">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground font-bold text-sm shrink-0">
-            DTY
-          </div>
+          <img src={dtyLogo} alt="DTY Logo" className="h-8 w-8 shrink-0" />
           {!collapsed && (
             <span className="text-sm font-semibold text-sidebar-foreground tracking-tight">
               3Cat CMS
