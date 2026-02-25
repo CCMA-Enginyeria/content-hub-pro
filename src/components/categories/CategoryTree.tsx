@@ -12,7 +12,7 @@ interface CategoryTreeItemProps {
 }
 
 function CategoryTreeItem({ category, getChildren, selectedId, onSelect, level = 0 }: CategoryTreeItemProps) {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(level === 0);
   const children = getChildren(category.id);
   const hasChildren = children.length > 0;
   const isSelected = selectedId === category.id;
