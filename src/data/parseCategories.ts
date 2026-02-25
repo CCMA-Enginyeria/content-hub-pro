@@ -19,7 +19,7 @@ function parseCSV(raw: string): Category[] {
       name,
       description: '',
       parentId: idPare || null,
-      isActive: activat === '1',
+      isActive: activat === '0',
       isVisibleOnPublication: visiblePub === '1',
       createdAt: '2024-01-01T00:00:00Z',
       updatedAt: '2024-01-01T00:00:00Z',
