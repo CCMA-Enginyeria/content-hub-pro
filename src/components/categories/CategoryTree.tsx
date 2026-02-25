@@ -1,4 +1,4 @@
-import { ChevronRight, ChevronDown, Folder, FolderOpen, Eye, Pencil, Trash2 } from 'lucide-react';
+import { ChevronRight, ChevronDown, Folder, FolderOpen, Pencil, Trash2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { Category } from '@/types/category';
 import { cn } from '@/lib/utils';
@@ -62,16 +62,13 @@ function CategoryTreeItem({ category, getChildren, selectedId, onSelect, onDelet
         ) : (
           <Folder className="h-4 w-4 shrink-0 text-muted-foreground" />
         )}
-        <span className="truncate flex-1">{category.name}</span>
+        <span className="truncate flex-1 cursor-pointer" onClick={() => onSelect(category.id)}>{category.name}</span>
         {!category.isActive && (
           <span className="text-[10px] uppercase tracking-wider text-muted-foreground/60 font-medium">
             Inactiva
           </span>
         )}
         <div className="flex items-center gap-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
-          <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => onSelect(category.id)} title="Veure">
-            <Eye className="h-3 w-3" />
-          </Button>
           <Button variant="ghost" size="icon" className="h-6 w-6" onClick={() => navigate(`/categories/${category.id}/edit`)} title="Editar">
             <Pencil className="h-3 w-3" />
           </Button>
