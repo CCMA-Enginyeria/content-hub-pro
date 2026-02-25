@@ -18,12 +18,10 @@ export function useCategories() {
     );
   }, [categories, searchQuery]);
 
-  const categoryIds = useMemo(() => new Set(categories.map((c) => c.id)), [categories]);
-
-  const rootCategories = useMemo(
-    () => categories.filter((c) => c.parentId === null || !categoryIds.has(c.parentId!)),
-    [categories, categoryIds]
-  );
+  const rootCategories = useMemo(() => {
+    const idSet = new Set(categories.map((c) => c.id));
+    return categories.filter((c) => c.parentId === null || !idSet.has(c.parentId!));
+  }, [categories]);
 
   const getChildren = useCallback(
     (parentId: string) => categories.filter((c) => c.parentId === parentId),
