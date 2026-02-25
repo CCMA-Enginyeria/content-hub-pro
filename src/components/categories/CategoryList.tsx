@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Category } from '@/types/category';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Eye, EyeOff, ChevronLeft, ChevronRight, Pencil, Trash2, Search } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Pencil, Trash2, Search } from 'lucide-react';
+import { Checkbox } from '@/components/ui/checkbox';
 import { cn } from '@/lib/utils';
 import {
   AlertDialog,
@@ -73,8 +74,9 @@ export function CategoryList({ categories, selectedId, onSelect, allCategories }
             {paged.map((cat, i) => (
               <tr
                 key={cat.id}
+                onClick={() => onSelect(cat.id)}
                 className={cn(
-                  'border-b transition-colors last:border-0',
+                  'cursor-pointer border-b transition-colors last:border-0',
                   i % 2 === 0 ? 'bg-card' : 'bg-muted/30',
                   'hover:bg-accent/10'
                 )}
@@ -93,18 +95,11 @@ export function CategoryList({ categories, selectedId, onSelect, allCategories }
                     {cat.isActive ? 'Activa' : 'Inactiva'}
                   </Badge>
                 </td>
-                <td className="px-4 py-3 text-center hidden sm:table-cell">
-                  {cat.isVisibleOnPublication ? (
-                    <Eye className="h-4 w-4 mx-auto text-success" />
-                  ) : (
-                    <EyeOff className="h-4 w-4 mx-auto text-muted-foreground/50" />
-                  )}
+                <td className="px-4 py-3 text-center hidden sm:table-cell" onClick={(e) => e.stopPropagation()}>
+                  <Checkbox checked={cat.isVisibleOnPublication} disabled className="mx-auto" />
                 </td>
-                <td className="px-4 py-3 text-right">
+                <td className="px-4 py-3 text-right" onClick={(e) => e.stopPropagation()}>
                   <div className="flex items-center justify-end gap-1">
-                    <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => onSelect(cat.id)} title="Veure">
-                      <Eye className="h-3.5 w-3.5" />
-                    </Button>
                     <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => navigate(`/categories/${cat.id}/edit`)} title="Editar">
                       <Pencil className="h-3.5 w-3.5" />
                     </Button>
