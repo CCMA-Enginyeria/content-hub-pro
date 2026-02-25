@@ -1,9 +1,9 @@
 import { useState, useCallback, useMemo } from 'react';
 import { Category, CategoryFormData } from '@/types/category';
-import { mockCategories } from '@/data/mockCategories';
+import { realCategories } from '@/data/parseCategories';
 
 export function useCategories() {
-  const [categories, setCategories] = useState<Category[]>(mockCategories);
+  const [categories, setCategories] = useState<Category[]>(realCategories);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
@@ -18,9 +18,11 @@ export function useCategories() {
     );
   }, [categories, searchQuery]);
 
+  const categoryIds = useMemo(() => new Set(categories.map((c) => c.id)), [categories]);
+
   const rootCategories = useMemo(
-    () => categories.filter((c) => c.parentId === null),
-    [categories]
+    () => categories.filter((c) => c.parentId === null || !categoryIds.has(c.parentId!)),
+    [categories, categoryIds]
   );
 
   const getChildren = useCallback(
