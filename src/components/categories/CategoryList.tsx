@@ -50,7 +50,7 @@ export function CategoryList({ categories, selectedId, onSelect, allCategories }
               )}
             >
               <td className="px-4 py-3 font-medium">{cat.name}</td>
-              <td className="px-4 py-3 font-mono text-xs text-muted-foreground hidden md:table-cell">{cat.textId}</td>
+              <td className="px-4 py-3 font-mono text-xs text-muted-foreground hidden md:table-cell uppercase">{cat.textId}</td>
               <td className="px-4 py-3 text-muted-foreground hidden lg:table-cell">{getParentName(cat.parentId)}</td>
               <td className="px-4 py-3 text-center">
                 <Badge

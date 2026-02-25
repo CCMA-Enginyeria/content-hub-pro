@@ -30,11 +30,11 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
     if (!isEditing && name) {
       setTextId(
         name
-          .toLowerCase()
+          .toUpperCase()
           .normalize('NFD')
           .replace(/[\u0300-\u036f]/g, '')
-          .replace(/[^a-z0-9]+/g, '-')
-          .replace(/^-|-$/g, '')
+          .replace(/[^A-Z0-9]+/g, '_')
+          .replace(/^_|_$/g, '')
       );
     }
   }, [name, isEditing]);
@@ -75,7 +75,7 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
 
         <div className="space-y-2">
           <Label htmlFor="textId" className="uppercase text-xs tracking-wider font-semibold">Identificador textual *</Label>
-          <Input id="textId" value={textId} onChange={(e) => setTextId(e.target.value)} placeholder="identificador-unic" className="font-mono text-sm" required />
+          <Input id="textId" value={textId} onChange={(e) => setTextId(e.target.value.toUpperCase())} placeholder="IDENTIFICADOR-UNIC" className="font-mono text-sm uppercase" required />
           <p className="text-xs text-muted-foreground">Identificador únic per a ús intern i URLs.</p>
         </div>
 

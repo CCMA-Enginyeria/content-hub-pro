@@ -20,7 +20,7 @@ export function CategoryDetail({ category, parentName, onEdit, onDelete }: Categ
           <h2 className="text-xl font-semibold tracking-tight text-foreground">
             {category.name}
           </h2>
-          <p className="mt-1 font-mono text-xs text-muted-foreground">
+          <p className="mt-1 font-mono text-xs text-muted-foreground uppercase">
             {category.textId}
           </p>
         </div>
