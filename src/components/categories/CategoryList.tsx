@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Category } from '@/types/category';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ChevronLeft, ChevronRight, Pencil, Trash2, Search } from 'lucide-react';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Eye, EyeOff, ChevronLeft, ChevronRight, Pencil, Trash2, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
   AlertDialog,
@@ -95,8 +94,12 @@ export function CategoryList({ categories, selectedId, onSelect, allCategories }
                     {cat.isActive ? 'Activa' : 'Inactiva'}
                   </Badge>
                 </td>
-                <td className="px-4 py-3 text-center hidden sm:table-cell" onClick={(e) => e.stopPropagation()}>
-                  <Checkbox checked={cat.isVisibleOnPublication} disabled className="mx-auto" />
+                <td className="px-4 py-3 text-center hidden sm:table-cell">
+                  {cat.isVisibleOnPublication ? (
+                    <Eye className="h-4 w-4 mx-auto text-success" />
+                  ) : (
+                    <EyeOff className="h-4 w-4 mx-auto text-muted-foreground/50" />
+                  )}
                 </td>
                 <td className="px-4 py-3 text-right" onClick={(e) => e.stopPropagation()}>
                   <div className="flex items-center justify-end gap-1">
