@@ -1,10 +1,12 @@
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useCategoriesContext } from '@/contexts/CategoriesContext';
 import { CategoryList } from '@/components/categories/CategoryList';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, Plus, ArrowLeft, X } from 'lucide-react';
+import { Search, ArrowLeft, X } from 'lucide-react';
+
+type StatusFilter = 'all' | 'active' | 'inactive';
 
 export default function CategoriesPage() {
   const {
@@ -18,6 +20,7 @@ export default function CategoriesPage() {
   const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const parentId = searchParams.get('parent');
+  const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
 
   const parentCategory = useMemo(
     () => (parentId ? categories.find((c) => c.id === parentId) ?? null : null),
@@ -25,6 +28,7 @@ export default function CategoriesPage() {
   );
 
   const displayedCategories = useMemo(() => {
+    let result: typeof categories;
     if (parentId) {
       const descendants: typeof categories = [];
       const collect = (pid: string) => {
@@ -37,14 +41,19 @@ export default function CategoriesPage() {
       collect(parentId);
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
-        return descendants.filter(
+        result = descendants.filter(
           (c) => c.name.toLowerCase().includes(q) || c.textId.toLowerCase().includes(q) || c.description.toLowerCase().includes(q)
         );
+      } else {
+        result = descendants;
       }
-      return descendants;
+    } else {
+      result = filteredCategories;
     }
-    return filteredCategories;
-  }, [parentId, filteredCategories, categories, getChildren, searchQuery]);
+    if (statusFilter === 'active') return result.filter((c) => c.isActive);
+    if (statusFilter === 'inactive') return result.filter((c) => !c.isActive);
+    return result;
+  }, [parentId, filteredCategories, categories, getChildren, searchQuery, statusFilter]);
 
   const handleSelect = (id: string) => navigate(`/categories/${id}`);
 
@@ -79,6 +88,21 @@ export default function CategoriesPage() {
             </div>
           </div>
           <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1 rounded-md border bg-muted/40 p-0.5">
+              {([['all', 'Totes'], ['active', 'Actives'], ['inactive', 'Inactives']] as const).map(([value, label]) => (
+                <button
+                  key={value}
+                  onClick={() => setStatusFilter(value)}
+                  className={`px-3 py-1 text-xs font-medium rounded transition-colors ${
+                    statusFilter === value
+                      ? 'bg-background text-foreground shadow-sm'
+                      : 'text-muted-foreground hover:text-foreground'
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
             <div className="relative max-w-[240px]">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <Input
