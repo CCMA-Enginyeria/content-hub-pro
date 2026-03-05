@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import {
   Tags,
   Tv,
@@ -11,15 +11,13 @@ import {
   ChevronRight,
   Folder,
   FolderOpen,
-  Search,
-  X,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import dtyLogo from '@/assets/dty-logo.svg';
 import { NavLink } from '@/components/NavLink';
 import { useCategoriesContext } from '@/contexts/CategoriesContext';
 import { Category } from '@/types/category';
-import { Input } from '@/components/ui/input';
+
 import {
   Sidebar,
   SidebarContent,
@@ -182,17 +180,8 @@ export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === 'collapsed';
   const navigate = useNavigate();
-  const { rootCategories, getChildren, categories } = useCategoriesContext();
+  const { rootCategories, getChildren } = useCategoriesContext();
   const [categoriesOpen, setCategoriesOpen] = useState(false);
-  const [sidebarSearch, setSidebarSearch] = useState('');
-
-  const filteredRootCategories = useMemo(() => {
-    if (!sidebarSearch.trim()) return rootCategories;
-    const q = sidebarSearch.toLowerCase();
-    return categories.filter(
-      (c) => c.name.toLowerCase().includes(q) || c.textId.toLowerCase().includes(q)
-    );
-  }, [rootCategories, categories, sidebarSearch]);
 
   const handleCategoryClick = (id: string) => {
     const children = getChildren(id);
@@ -255,37 +244,16 @@ export function AppSidebar() {
                       </SidebarMenuButton>
                       {categoriesOpen && !collapsed && (
                         <div className="mt-0.5 mb-1">
-                          <div className="relative px-1.5 mb-1">
-                            <Search className="absolute left-3.5 top-1/2 h-3 w-3 -translate-y-1/2 text-muted-foreground" />
-                            <Input
-                              placeholder="Cercar..."
-                              value={sidebarSearch}
-                              onChange={(e) => setSidebarSearch(e.target.value)}
-                              className="h-7 pl-7 pr-7 text-xs text-foreground"
-                            />
-                            {sidebarSearch && (
-                              <button
-                                onClick={() => setSidebarSearch('')}
-                                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
-                              >
-                                <X className="h-3 w-3" />
-                              </button>
-                            )}
-                          </div>
                           <div className="max-h-[40vh] overflow-y-auto scrollbar-thin">
-                            {filteredRootCategories.length === 0 ? (
-                              <p className="px-3 py-2 text-xs text-muted-foreground">Cap resultat</p>
-                            ) : (
-                              filteredRootCategories.map((cat) => (
+                            {rootCategories.map((cat) => (
                                 <SidebarCategoryNode
                                   key={cat.id}
                                   category={cat}
-                                  getChildren={sidebarSearch.trim() ? () => [] : getChildren}
-                                  searchQuery={sidebarSearch}
+                                  getChildren={getChildren}
                                   onClickCategory={handleCategoryClick}
                                 />
-                              ))
-                            )}
+                              ))}
+                            
                           </div>
                         </div>
                       )}
