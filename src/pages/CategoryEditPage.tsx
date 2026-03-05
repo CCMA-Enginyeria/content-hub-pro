@@ -2,7 +2,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useCategoriesContext } from '@/contexts/CategoriesContext';
 import { CategoryForm } from '@/components/categories/CategoryForm';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft } from 'lucide-react';
 
 export default function CategoryEditPage() {
   const { id } = useParams<{ id: string }>();
@@ -23,24 +22,17 @@ export default function CategoryEditPage() {
   }
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-6">
-      <Button variant="ghost" size="sm" onClick={() => navigate(`/categories/${id}`)} className="mb-4 -ml-2">
-        <ArrowLeft className="mr-1.5 h-4 w-4" />
-        Tornar
-      </Button>
-
-      <div className="rounded-xl border bg-card p-6 shadow-sm">
-        <CategoryForm
-          category={category}
-          allCategories={categories}
-          onSave={() => {}}
-          onUpdate={(catId, data) => {
-            updateCategory(catId, data);
-            navigate(`/categories/${catId}`);
-          }}
-          onCancel={() => navigate(`/categories/${id}`)}
-        />
-      </div>
+    <div className="min-h-screen bg-background">
+      <CategoryForm
+        category={category}
+        allCategories={categories}
+        onSave={() => {}}
+        onUpdate={(catId, data) => {
+          updateCategory(catId, data);
+          navigate(`/categories/${catId}`);
+        }}
+        onCancel={() => navigate(`/categories/${id}`)}
+      />
     </div>
   );
 }
