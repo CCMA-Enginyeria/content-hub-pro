@@ -36,18 +36,17 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-const PAGE_SIZES = [10, 20, 50, 100];
-
 interface CategoryListProps {
   categories: Category[];
   selectedId: string | null;
   onSelect: (id: string) => void;
   allCategories: Category[];
+  pageSize?: number;
 }
 
-export function CategoryList({ categories, selectedId, onSelect, allCategories }: CategoryListProps) {
+export function CategoryList({ categories, selectedId, onSelect, allCategories, pageSize: externalPageSize }: CategoryListProps) {
   const [page, setPage] = useState(0);
-  const [pageSize, setPageSize] = useState(20);
+  const pageSize = externalPageSize ?? 20;
   const navigate = useNavigate();
   const { deleteCategory } = useCategoriesContext();
   const [deleteTarget, setDeleteTarget] = useState<Category | null>(null);
@@ -77,7 +76,7 @@ export function CategoryList({ categories, selectedId, onSelect, allCategories }
   };
 
   const handlePageSizeChange = (value: string) => {
-    setPageSize(Number(value));
+    // page size now controlled externally
     setPage(0);
   };
 
