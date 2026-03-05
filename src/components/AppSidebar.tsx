@@ -3,6 +3,7 @@ import {
   Tags,
   Tv,
   Globe,
+  FileText,
   Radio,
   Users,
   Settings,
@@ -87,10 +88,10 @@ function SidebarCategoryNode({
         ) : (
           <span className="w-4" />
         )}
-        {expanded && hasChildren ? (
-          <FolderOpen className="h-3.5 w-3.5 shrink-0 text-accent" />
+        {hasChildren ? (
+          expanded ? <FolderOpen className="h-3.5 w-3.5 shrink-0 text-accent" /> : <Folder className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
         ) : (
-          <Folder className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+          <FileText className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
         )}
         <span className="truncate flex-1">{category.name}</span>
         {hasChildren && (
