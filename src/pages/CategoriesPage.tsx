@@ -125,7 +125,7 @@ export default function CategoriesPage() {
               size="sm"
               className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-4"
             >
-              Crea nou
+              Crea nova
             </Button>
           </div>
         </div>
