@@ -11,8 +11,6 @@ import {
   ChevronRight,
   Folder,
   FolderOpen,
-  Pencil,
-  Trash2,
   Search,
   X,
 } from 'lucide-react';
@@ -21,7 +19,6 @@ import dtyLogo from '@/assets/dty-logo.svg';
 import { NavLink } from '@/components/NavLink';
 import { useCategoriesContext } from '@/contexts/CategoriesContext';
 import { Category } from '@/types/category';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
   Sidebar,
@@ -41,16 +38,6 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
 
 const otherContentItems = [
   { title: 'Emissions', url: '/emissions', icon: Radio },
@@ -81,17 +68,16 @@ function SidebarCategoryNode({
   category,
   getChildren,
   level = 0,
-  onDelete,
   searchQuery = '',
+  onClickCategory,
 }: {
   category: Category;
   getChildren: (parentId: string) => Category[];
   level?: number;
-  onDelete: (cat: Category) => void;
   searchQuery?: string;
+  onClickCategory: (id: string) => void;
 }) {
   const [expanded, setExpanded] = useState(false);
-  const navigate = useNavigate();
   const { state } = useSidebar();
   const collapsed = state === 'collapsed';
   const children = getChildren(category.id);
@@ -102,11 +88,15 @@ function SidebarCategoryNode({
   return (
     <div>
       <div
-        className="group flex items-center gap-1 rounded-md px-1.5 py-1 text-xs text-sidebar-foreground/80 hover:bg-sidebar-accent transition-colors"
+        className="group flex items-center gap-1 rounded-md px-1.5 py-1 text-xs text-sidebar-foreground/80 hover:bg-sidebar-accent transition-colors cursor-pointer"
         style={{ paddingLeft: `${level * 12 + 8}px` }}
+        onClick={() => onClickCategory(category.id)}
       >
         {hasChildren ? (
-          <button onClick={() => setExpanded(!expanded)} className="shrink-0 p-0.5 rounded hover:bg-sidebar-accent">
+          <button
+            onClick={(e) => { e.stopPropagation(); setExpanded(!expanded); }}
+            className="shrink-0 p-0.5 rounded hover:bg-sidebar-accent"
+          >
             {expanded ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
           </button>
         ) : (
@@ -117,20 +107,9 @@ function SidebarCategoryNode({
         ) : (
           <Folder className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
         )}
-        <span
-          className="truncate flex-1 cursor-pointer"
-          onClick={() => navigate(`/categories/${category.id}`)}
-        >
+        <span className="truncate flex-1">
           <HighlightText text={category.name} query={searchQuery} />
         </span>
-        <div className="flex items-center gap-0 opacity-0 group-hover:opacity-100 transition-opacity">
-          <Button variant="ghost" size="icon" className="h-5 w-5" onClick={() => navigate(`/categories/${category.id}/edit`)} title="Editar">
-            <Pencil className="h-2.5 w-2.5" />
-          </Button>
-          <Button variant="ghost" size="icon" className="h-5 w-5 text-destructive hover:bg-destructive/10" onClick={() => onDelete(category)} title="Eliminar">
-            <Trash2 className="h-2.5 w-2.5" />
-          </Button>
-        </div>
       </div>
       {expanded && hasChildren && (
         <div>
@@ -140,8 +119,8 @@ function SidebarCategoryNode({
               category={child}
               getChildren={getChildren}
               level={level + 1}
-              onDelete={onDelete}
               searchQuery={searchQuery}
+              onClickCategory={onClickCategory}
             />
           ))}
         </div>
@@ -203,30 +182,24 @@ export function AppSidebar() {
   const { state } = useSidebar();
   const collapsed = state === 'collapsed';
   const navigate = useNavigate();
-  const { rootCategories, getChildren, deleteCategory, categories } = useCategoriesContext();
+  const { rootCategories, getChildren, categories } = useCategoriesContext();
   const [categoriesOpen, setCategoriesOpen] = useState(false);
-  const [deleteTarget, setDeleteTarget] = useState<Category | null>(null);
   const [sidebarSearch, setSidebarSearch] = useState('');
 
   const filteredRootCategories = useMemo(() => {
     if (!sidebarSearch.trim()) return rootCategories;
     const q = sidebarSearch.toLowerCase();
-    // Find all categories matching the query, then show them flat
     return categories.filter(
       (c) => c.name.toLowerCase().includes(q) || c.textId.toLowerCase().includes(q)
     );
   }, [rootCategories, categories, sidebarSearch]);
 
-  const handleDeleteConfirm = () => {
-    if (deleteTarget) {
-      deleteCategory(deleteTarget.id);
-      setDeleteTarget(null);
-    }
+  const handleCategoryClick = (id: string) => {
+    navigate(`/categories?parent=${id}`);
   };
 
   return (
-    <>
-      <Sidebar collapsible="icon">
+    <Sidebar collapsible="icon">
         <SidebarHeader className="p-4">
           <div className="flex items-center gap-2.5">
             <img src={dtyLogo} alt="DTY Logo" className="h-8 w-8 shrink-0" />
@@ -303,8 +276,8 @@ export function AppSidebar() {
                                   key={cat.id}
                                   category={cat}
                                   getChildren={sidebarSearch.trim() ? () => [] : getChildren}
-                                  onDelete={setDeleteTarget}
                                   searchQuery={sidebarSearch}
+                                  onClickCategory={handleCategoryClick}
                                 />
                               ))
                             )}
@@ -355,24 +328,5 @@ export function AppSidebar() {
           </SidebarMenu>
         </SidebarFooter>
       </Sidebar>
-
-      <AlertDialog open={!!deleteTarget} onOpenChange={(open) => !open && setDeleteTarget(null)}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Eliminar categoria</AlertDialogTitle>
-            <AlertDialogDescription>
-              Estàs segur que vols eliminar <strong>{deleteTarget?.name}</strong>?
-              Aquesta acció no es pot desfer.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel>Cancel·lar</AlertDialogCancel>
-            <AlertDialogAction onClick={handleDeleteConfirm} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
-              Eliminar
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-    </>
   );
 }
