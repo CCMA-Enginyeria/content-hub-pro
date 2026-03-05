@@ -1,27 +1,19 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCategoriesContext } from '@/contexts/CategoriesContext';
-import { CategoryTree } from '@/components/categories/CategoryTree';
 import { CategoryList } from '@/components/categories/CategoryList';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, Plus, LayoutList, TreePine, Tags } from 'lucide-react';
-
-type View = 'tree' | 'list';
+import { Search, Plus, Tags } from 'lucide-react';
 
 export default function CategoriesPage() {
   const {
     categories,
     filteredCategories,
-    rootCategories,
-    getChildren,
     searchQuery,
     setSearchQuery,
   } = useCategoriesContext();
 
   const navigate = useNavigate();
-  const [view, setView] = useState<View>('tree');
-
   const handleSelect = (id: string) => navigate(`/categories/${id}`);
 
   return (
@@ -55,43 +47,15 @@ export default function CategoriesPage() {
               className="pl-9"
             />
           </div>
-          <div className="flex rounded-lg border p-0.5">
-            <Button variant={view === 'tree' ? 'secondary' : 'ghost'} size="sm" onClick={() => setView('tree')} className="h-8 px-3">
-              <TreePine className="mr-1.5 h-3.5 w-3.5" />
-              Arbre
-            </Button>
-            <Button variant={view === 'list' ? 'secondary' : 'ghost'} size="sm" onClick={() => setView('list')} className="h-8 px-3">
-              <LayoutList className="mr-1.5 h-3.5 w-3.5" />
-              Llista
-            </Button>
-          </div>
         </div>
 
         <div className="rounded-xl border bg-card p-4 shadow-sm">
-          {view === 'tree' ? (
-            searchQuery ? (
-              <CategoryList
-                categories={filteredCategories}
-                selectedId={null}
-                onSelect={handleSelect}
-                allCategories={categories}
-              />
-            ) : (
-              <CategoryTree
-                rootCategories={rootCategories}
-                getChildren={getChildren}
-                selectedId={null}
-                onSelect={handleSelect}
-              />
-            )
-          ) : (
-            <CategoryList
-              categories={filteredCategories}
-              selectedId={null}
-              onSelect={handleSelect}
-              allCategories={categories}
-            />
-          )}
+          <CategoryList
+            categories={filteredCategories}
+            selectedId={null}
+            onSelect={handleSelect}
+            allCategories={categories}
+          />
         </div>
       </div>
     </div>
