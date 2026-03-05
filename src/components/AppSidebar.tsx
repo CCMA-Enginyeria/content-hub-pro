@@ -195,7 +195,12 @@ export function AppSidebar() {
   }, [rootCategories, categories, sidebarSearch]);
 
   const handleCategoryClick = (id: string) => {
-    navigate(`/categories?parent=${id}`);
+    const children = getChildren(id);
+    if (children.length > 0) {
+      navigate(`/categories?parent=${id}`);
+    } else {
+      navigate(`/categories/${id}`);
+    }
   };
 
   return (
