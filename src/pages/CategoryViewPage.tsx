@@ -133,6 +133,12 @@ export default function CategoryViewPage() {
           <ReadonlyField className="font-mono text-sm uppercase">{category.textId}</ReadonlyField>
         </div>
 
+        {/* Sinònims */}
+        <div className="space-y-1">
+          <Label>Sinònims</Label>
+          <ReadonlyField>{category.synonyms || <span className="text-muted-foreground italic">—</span>}</ReadonlyField>
+        </div>
+
         {/* Paraules clau */}
         <div className="space-y-1">
           <Label>Paraules clau</Label>
