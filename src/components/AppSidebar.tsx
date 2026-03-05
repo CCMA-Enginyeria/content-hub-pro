@@ -261,7 +261,7 @@ export function AppSidebar() {
                               placeholder="Cercar..."
                               value={sidebarSearch}
                               onChange={(e) => setSidebarSearch(e.target.value)}
-                              className="h-7 pl-7 pr-7 text-xs"
+                              className="h-7 pl-7 pr-7 text-xs text-foreground"
                             />
                             {sidebarSearch && (
                               <button
