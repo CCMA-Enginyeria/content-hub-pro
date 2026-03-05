@@ -1,5 +1,4 @@
-import { Search, Bell } from 'lucide-react';
-import { Input } from '@/components/ui/input';
+import { Bell } from 'lucide-react';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import {
@@ -17,16 +16,9 @@ export function AppHeader() {
     <header className="sticky top-0 z-20 flex h-12 items-center gap-3 border-b bg-primary px-3 text-primary-foreground">
       <SidebarTrigger className="text-primary-foreground hover:bg-primary-foreground/10" />
 
-      {/* Global search */}
-      <div className="relative flex-1 max-w-md">
-        <Search className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-primary-foreground/50" />
-        <Input
-          placeholder="Cercar..."
-          className="h-8 border-primary-foreground/20 bg-primary-foreground/10 pl-8 text-sm text-primary-foreground placeholder:text-primary-foreground/50 focus-visible:ring-primary-foreground/30"
-        />
-      </div>
+      <div className="flex-1" />
 
-      <div className="ml-auto flex items-center gap-2">
+      <div className="flex items-center gap-2">
         {/* Notifications */}
         <Button variant="ghost" size="icon" className="h-8 w-8 text-primary-foreground hover:bg-primary-foreground/10">
           <Bell className="h-4 w-4" />
