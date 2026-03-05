@@ -64,16 +64,31 @@ const systemItems = [
 ];
 
 /* ── Mini tree node for sidebar ── */
+function HighlightText({ text, query }: { text: string; query: string }) {
+  if (!query.trim()) return <>{text}</>;
+  const idx = text.toLowerCase().indexOf(query.toLowerCase());
+  if (idx === -1) return <>{text}</>;
+  return (
+    <>
+      {text.slice(0, idx)}
+      <mark className="bg-primary/25 text-inherit rounded-sm px-0.5">{text.slice(idx, idx + query.length)}</mark>
+      {text.slice(idx + query.length)}
+    </>
+  );
+}
+
 function SidebarCategoryNode({
   category,
   getChildren,
   level = 0,
   onDelete,
+  searchQuery = '',
 }: {
   category: Category;
   getChildren: (parentId: string) => Category[];
   level?: number;
   onDelete: (cat: Category) => void;
+  searchQuery?: string;
 }) {
   const [expanded, setExpanded] = useState(false);
   const navigate = useNavigate();
@@ -106,7 +121,7 @@ function SidebarCategoryNode({
           className="truncate flex-1 cursor-pointer"
           onClick={() => navigate(`/categories/${category.id}`)}
         >
-          {category.name}
+          <HighlightText text={category.name} query={searchQuery} />
         </span>
         <div className="flex items-center gap-0 opacity-0 group-hover:opacity-100 transition-opacity">
           <Button variant="ghost" size="icon" className="h-5 w-5" onClick={() => navigate(`/categories/${category.id}/edit`)} title="Editar">
@@ -126,6 +141,7 @@ function SidebarCategoryNode({
               getChildren={getChildren}
               level={level + 1}
               onDelete={onDelete}
+              searchQuery={searchQuery}
             />
           ))}
         </div>
@@ -288,6 +304,7 @@ export function AppSidebar() {
                                   category={cat}
                                   getChildren={sidebarSearch.trim() ? () => [] : getChildren}
                                   onDelete={setDeleteTarget}
+                                  searchQuery={sidebarSearch}
                                 />
                               ))
                             )}
