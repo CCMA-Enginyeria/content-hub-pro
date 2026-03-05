@@ -12,15 +12,17 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Pencil, Trash2, Eye, EyeOff, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Pencil, Trash2, Eye, EyeOff, ExternalLink, Merge } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
+import { MoveCategoryDialog } from '@/components/categories/MoveCategoryDialog';
 
 export default function CategoryViewPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { categories, getParent, getChildren, deleteCategory } = useCategoriesContext();
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [moveDialogOpen, setMoveDialogOpen] = useState(false);
 
   const category = categories.find((c) => c.id === id) ?? null;
   const parent = category ? getParent(category.parentId) : null;
@@ -73,6 +75,15 @@ export default function CategoryViewPage() {
               onClick={() => setDeleteDialogOpen(true)}
             >
               <Trash2 className="h-3.5 w-3.5" />
+            </Button>
+            <Button
+              variant="ghost"
+              size="sm"
+              className="text-muted-foreground hover:text-foreground"
+              onClick={() => setMoveDialogOpen(true)}
+              title="Mou"
+            >
+              <Merge className="h-3.5 w-3.5" />
             </Button>
             <Button variant="ghost" size="sm" onClick={() => navigate('/categories')} className="text-muted-foreground">
               Surt
@@ -244,6 +255,17 @@ export default function CategoryViewPage() {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      <MoveCategoryDialog
+        open={moveDialogOpen}
+        onOpenChange={setMoveDialogOpen}
+        sourceCategory={category}
+        allCategories={categories}
+        onConfirm={(targetId, deleteSource) => {
+          console.log('Move', category.id, 'to', targetId, 'delete source:', deleteSource);
+          setMoveDialogOpen(false);
+        }}
+      />
     </div>
   );
 }
