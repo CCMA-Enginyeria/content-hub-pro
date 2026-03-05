@@ -247,7 +247,7 @@ export function AppSidebar() {
                         </div>
                       </SidebarMenuButton>
                       {categoriesOpen && !collapsed && (
-                        <div className="mt-0.5 mb-1">
+                        <div className="mt-0.5 mb-1 max-h-[40vh] overflow-y-auto scrollbar-thin">
                           {rootCategories.map((cat) => (
                             <SidebarCategoryNode
                               key={cat.id}
