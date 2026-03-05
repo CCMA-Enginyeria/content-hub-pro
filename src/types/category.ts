@@ -8,6 +8,7 @@ export interface Category {
   isVisibleOnPublication: boolean;
   keywords: string;
   comments: string;
+  synonyms: string;
   type: 'Node' | 'Fulla';
   order: number;
   weight: number;

@@ -29,6 +29,7 @@ function parseCSV(raw: string): Category[] {
       isVisibleOnPublication: visiblePub === '0',
       keywords: '',
       comments: '',
+      synonyms: '',
       type: hasChildren ? 'Node' : 'Fulla',
       order: i,
       weight: 0,

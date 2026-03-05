@@ -1,6 +1,6 @@
 import { Category } from '@/types/category';
 
-const defaults = { keywords: '', comments: '', type: 'Node' as const, order: 1, weight: 0 };
+const defaults = { keywords: '', comments: '', synonyms: '', type: 'Node' as const, order: 1, weight: 0 };
 
 export const mockCategories: Category[] = [
   { id: '1', textId: 'esports', name: 'Esports', description: "Continguts relacionats amb el món de l'esport.", parentId: null, isActive: true, isVisibleOnPublication: true, ...defaults, createdAt: '2024-01-15T10:00:00Z', updatedAt: '2024-06-20T14:30:00Z' },

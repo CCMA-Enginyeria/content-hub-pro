@@ -4,10 +4,9 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { ArrowLeft, Save, Eye, X } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
+import { ArrowLeft, Save, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface CategoryFormProps {
@@ -29,6 +28,7 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
   const [isVisibleOnPublication, setIsVisibleOnPublication] = useState(category?.isVisibleOnPublication ?? true);
   const [keywords, setKeywords] = useState(category?.keywords ?? '');
   const [comments, setComments] = useState(category?.comments ?? '');
+  const [synonyms, setSynonyms] = useState(category?.synonyms ?? '');
   const [type, setType] = useState<'Node' | 'Fulla'>(category?.type ?? 'Fulla');
   const [order, setOrder] = useState(category?.order ?? 1);
   const [weight, setWeight] = useState(category?.weight ?? 0);
@@ -53,13 +53,11 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
   const excludedIds = category ? getDescendantIds(category.id) : [];
   const parentOptions = allCategories.filter((c) => !excludedIds.includes(c.id));
 
-  const parentName = parentId
-    ? allCategories.find((c) => c.id === parentId)?.name ?? null
-    : null;
+  const children = category ? allCategories.filter((c) => c.parentId === category.id) : [];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const data: CategoryFormData = { name, textId, description, parentId, isActive, isVisibleOnPublication, keywords, comments, type, order, weight };
+    const data: CategoryFormData = { name, textId, description, parentId, isActive, isVisibleOnPublication, keywords, comments, synonyms, type, order, weight };
     if (isEditing && onUpdate) {
       onUpdate(category.id, data);
     } else {
@@ -72,7 +70,6 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
       {/* ── Top header bar ── */}
       <header className="sticky top-0 z-10 border-b bg-background">
         <div className="flex items-center justify-between px-6 py-2.5">
-          {/* Left: back + breadcrumb */}
           <div className="flex items-center gap-3 min-w-0">
             <button type="button" onClick={onCancel} className="text-muted-foreground hover:text-foreground transition-colors shrink-0">
               <ArrowLeft className="h-5 w-5" />
@@ -88,41 +85,6 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
             </div>
           </div>
 
-          {/* Center: status controls inline */}
-          <div className="hidden md:flex items-center gap-4 text-sm">
-            <div className="flex items-center gap-2">
-              <span className="text-muted-foreground text-xs font-medium">Estat</span>
-              <Badge
-                variant="outline"
-                className={cn(
-                  'text-[10px] font-bold uppercase tracking-wide border-0 px-2.5 py-0.5 cursor-pointer',
-                  isActive
-                    ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300'
-                    : 'bg-muted text-muted-foreground'
-                )}
-                onClick={() => setIsActive(!isActive)}
-              >
-                {isActive ? 'Activa' : 'Inactiva'}
-              </Badge>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-muted-foreground text-xs font-medium">Visible</span>
-              <Badge
-                variant="outline"
-                className={cn(
-                  'text-[10px] font-bold uppercase tracking-wide border-0 px-2.5 py-0.5 cursor-pointer',
-                  isVisibleOnPublication
-                    ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300'
-                    : 'bg-muted text-muted-foreground'
-                )}
-                onClick={() => setIsVisibleOnPublication(!isVisibleOnPublication)}
-              >
-                {isVisibleOnPublication ? 'Visible' : 'Oculta'}
-              </Badge>
-            </div>
-          </div>
-
-          {/* Right: action buttons */}
           <div className="flex items-center gap-2 shrink-0">
             <Button type="submit" size="sm" className="gap-1.5 font-semibold">
               <Save className="h-3.5 w-3.5" />
@@ -137,60 +99,148 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
       </header>
 
       {/* ── Form body ── */}
-      <div className="flex-1 mx-auto w-full max-w-3xl px-6 py-8 space-y-8">
-        {/* Name */}
-        <div className="space-y-1">
-          <Label htmlFor="name" className="uppercase text-[11px] tracking-wider font-semibold text-muted-foreground">
-            Nom *
-          </Label>
+      <div className="flex-1 mx-auto w-full max-w-3xl px-6 py-8 space-y-6">
+        {/* Nom */}
+        <FormRow label="Nom *">
           <Input
-            id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Nom de la categoria"
             required
             className="border-0 border-b rounded-none bg-transparent px-0 text-base font-medium focus-visible:ring-0 focus-visible:border-primary"
           />
-        </div>
+        </FormRow>
 
-        {/* Text ID */}
-        <div className="space-y-1">
-          <Label htmlFor="textId" className="uppercase text-[11px] tracking-wider font-semibold text-muted-foreground">
-            Identificador textual *
-          </Label>
+        {/* ID de la categoria (read-only when editing) */}
+        {isEditing && (
+          <FormRow label="ID de la categoria">
+            <div className="border-b py-2 text-sm font-mono text-muted-foreground">{category.id}</div>
+          </FormRow>
+        )}
+
+        {/* UID / textId */}
+        <FormRow label="UID *">
           <Input
-            id="textId"
             value={textId}
             onChange={(e) => setTextId(e.target.value.toUpperCase())}
             placeholder="IDENTIFICADOR_UNIC"
             required
             className="border-0 border-b rounded-none bg-transparent px-0 font-mono text-sm uppercase focus-visible:ring-0 focus-visible:border-primary"
           />
-          <p className="text-xs text-muted-foreground pt-1">
-            La URL friendly serà visible quan aquest ítem estigui en estat de publicació
-          </p>
-        </div>
+        </FormRow>
 
-        {/* Description */}
-        <div className="space-y-1">
-          <Label htmlFor="description" className="uppercase text-[11px] tracking-wider font-semibold text-muted-foreground">
-            Descripció
-          </Label>
+        {/* Estat */}
+        <FormRow label="Estat">
+          <div className="border-b pb-2">
+            <Select value={isActive ? 'active' : 'inactive'} onValueChange={(v) => setIsActive(v === 'active')}>
+              <SelectTrigger className="border-0 bg-transparent px-0 shadow-none focus:ring-0 h-9 w-48">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="active">Activat</SelectItem>
+                <SelectItem value="inactive">Desactivat</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </FormRow>
+
+        {/* No visible a publicació */}
+        <FormRow label="No visible a publicació">
+          <div className="border-b py-2 flex items-center">
+            <Checkbox
+              checked={!isVisibleOnPublication}
+              onCheckedChange={(checked) => setIsVisibleOnPublication(!checked)}
+            />
+          </div>
+        </FormRow>
+
+        {/* Tipus */}
+        <FormRow label="Tipus">
+          <div className="border-b pb-2">
+            <Select value={type} onValueChange={(v) => setType(v as 'Node' | 'Fulla')}>
+              <SelectTrigger className="border-0 bg-transparent px-0 shadow-none focus:ring-0 h-9 w-48">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="Node">Node</SelectItem>
+                <SelectItem value="Fulla">Fulla</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </FormRow>
+
+        {/* Ordre */}
+        <FormRow label="Ordre">
+          <div className="border-b pb-2">
+            <Select value={String(order)} onValueChange={(v) => setOrder(Number(v))}>
+              <SelectTrigger className="border-0 bg-transparent px-0 shadow-none focus:ring-0 h-9 w-48">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="1">Alfabètic</SelectItem>
+                <SelectItem value="2">Manual</SelectItem>
+                <SelectItem value="3">Per pes</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </FormRow>
+
+        {/* Pes */}
+        <FormRow label="Pes">
+          <Input
+            type="number"
+            value={weight}
+            onChange={(e) => setWeight(Number(e.target.value))}
+            className="border-0 border-b rounded-none bg-transparent px-0 text-sm focus-visible:ring-0 focus-visible:border-primary w-32"
+          />
+        </FormRow>
+
+        {/* Comentaris */}
+        <FormRow label="Comentaris">
           <Textarea
-            id="description"
+            value={comments}
+            onChange={(e) => setComments(e.target.value)}
+            placeholder="Comentaris..."
+            rows={3}
+            className="border rounded-md bg-transparent px-3 py-2 resize-y focus-visible:ring-1 focus-visible:ring-primary text-sm"
+          />
+        </FormRow>
+
+        {/* Sinònims */}
+        <FormRow label="Sinònims">
+          <Textarea
+            value={synonyms}
+            onChange={(e) => setSynonyms(e.target.value)}
+            placeholder="Sinònims..."
+            rows={3}
+            className="border rounded-md bg-transparent px-3 py-2 resize-y focus-visible:ring-1 focus-visible:ring-primary text-sm"
+          />
+        </FormRow>
+
+        {/* Paraules clau */}
+        <FormRow label="Paraules clau">
+          <Textarea
+            value={keywords}
+            onChange={(e) => setKeywords(e.target.value)}
+            placeholder="Paraules clau..."
+            rows={3}
+            className="border rounded-md bg-transparent px-3 py-2 resize-y focus-visible:ring-1 focus-visible:ring-primary text-sm"
+          />
+        </FormRow>
+
+        {/* Descripció */}
+        <FormRow label="Descripció">
+          <Textarea
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Descripció de la categoria..."
             rows={3}
-            className="border-0 border-b rounded-none bg-transparent px-0 resize-none focus-visible:ring-0 focus-visible:border-primary"
+            className="border rounded-md bg-transparent px-3 py-2 resize-y focus-visible:ring-1 focus-visible:ring-primary text-sm"
           />
-        </div>
+        </FormRow>
 
-        {/* Parent category */}
-        <div className="space-y-1">
-          <Label className="uppercase text-[11px] tracking-wider font-semibold text-muted-foreground">
-            Categoria pare
-          </Label>
+        {/* Categoria pare */}
+        <FormRow label="*Pares">
           <div className="border-b pb-2">
             <Select value={parentId ?? '__none__'} onValueChange={(v) => setParentId(v === '__none__' ? null : v)}>
               <SelectTrigger className="border-0 bg-transparent px-0 shadow-none focus:ring-0 h-9">
@@ -206,25 +256,16 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
               </SelectContent>
             </Select>
           </div>
-        </div>
+        </FormRow>
 
-        {/* Mobile toggles (visible on small screens) */}
-        <div className="md:hidden space-y-4">
-          <div className="flex items-center justify-between py-3 border-b">
-            <div>
-              <Label htmlFor="isActive-mobile" className="text-sm font-medium">Activa</Label>
-              <p className="text-xs text-muted-foreground">La categoria es pot fer servir per etiquetar continguts.</p>
+        {/* Subcategories (read-only when editing) */}
+        {isEditing && children.length > 0 && (
+          <FormRow label="Subcategories (Fills)">
+            <div className="border-b py-2 text-sm text-muted-foreground">
+              {children.map((c) => c.name).join(', ')}
             </div>
-            <Switch id="isActive-mobile" checked={isActive} onCheckedChange={setIsActive} />
-          </div>
-          <div className="flex items-center justify-between py-3 border-b">
-            <div>
-              <Label htmlFor="isVisible-mobile" className="text-sm font-medium">Visible a publicació</Label>
-              <p className="text-xs text-muted-foreground">La categoria apareix al web públic.</p>
-            </div>
-            <Switch id="isVisible-mobile" checked={isVisibleOnPublication} onCheckedChange={setIsVisibleOnPublication} />
-          </div>
-        </div>
+          </FormRow>
+        )}
 
         {/* Dates (read-only info when editing) */}
         {isEditing && (
@@ -243,5 +284,17 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
         )}
       </div>
     </form>
+  );
+}
+
+/* ── Helper ── */
+function FormRow({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <div className="grid grid-cols-[180px_1fr] items-start gap-4">
+      <Label className="uppercase text-[11px] tracking-wider font-semibold text-muted-foreground pt-2.5 text-right">
+        {label}
+      </Label>
+      <div>{children}</div>
+    </div>
   );
 }
