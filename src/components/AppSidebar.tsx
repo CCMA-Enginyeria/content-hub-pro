@@ -11,6 +11,7 @@ import {
   ChevronRight,
   Folder,
   FolderOpen,
+  Search,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import dtyLogo from '@/assets/dty-logo.svg';
@@ -49,31 +50,17 @@ const systemItems = [
 ];
 
 /* ── Mini tree node for sidebar ── */
-function HighlightText({ text, query }: { text: string; query: string }) {
-  if (!query.trim()) return <>{text}</>;
-  const idx = text.toLowerCase().indexOf(query.toLowerCase());
-  if (idx === -1) return <>{text}</>;
-  return (
-    <>
-      {text.slice(0, idx)}
-      <mark className="bg-primary/25 text-inherit rounded-sm px-0.5">{text.slice(idx, idx + query.length)}</mark>
-      {text.slice(idx + query.length)}
-    </>
-  );
-}
 
 function SidebarCategoryNode({
   category,
   getChildren,
   level = 0,
-  searchQuery = '',
-  onClickCategory,
+  navigate,
 }: {
   category: Category;
   getChildren: (parentId: string) => Category[];
   level?: number;
-  searchQuery?: string;
-  onClickCategory: (id: string) => void;
+  navigate: (path: string) => void;
 }) {
   const [expanded, setExpanded] = useState(false);
   const { state } = useSidebar();
@@ -88,7 +75,7 @@ function SidebarCategoryNode({
       <div
         className="group flex items-center gap-1 rounded-md px-1.5 py-1 text-xs text-sidebar-foreground/80 hover:bg-sidebar-accent transition-colors cursor-pointer"
         style={{ paddingLeft: `${level * 12 + 8}px` }}
-        onClick={() => onClickCategory(category.id)}
+        onClick={() => navigate(`/categories/${category.id}`)}
       >
         {hasChildren ? (
           <button
@@ -105,9 +92,16 @@ function SidebarCategoryNode({
         ) : (
           <Folder className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
         )}
-        <span className="truncate flex-1">
-          <HighlightText text={category.name} query={searchQuery} />
-        </span>
+        <span className="truncate flex-1">{category.name}</span>
+        {hasChildren && (
+          <button
+            onClick={(e) => { e.stopPropagation(); navigate(`/categories?parent=${category.id}`); }}
+            className="shrink-0 p-0.5 rounded opacity-0 group-hover:opacity-100 hover:bg-sidebar-accent transition-opacity"
+            title="Cerca subcategories"
+          >
+            <Search className="h-3 w-3" />
+          </button>
+        )}
       </div>
       {expanded && hasChildren && (
         <div>
@@ -117,8 +111,7 @@ function SidebarCategoryNode({
               category={child}
               getChildren={getChildren}
               level={level + 1}
-              searchQuery={searchQuery}
-              onClickCategory={onClickCategory}
+              navigate={navigate}
             />
           ))}
         </div>
@@ -183,14 +176,9 @@ export function AppSidebar() {
   const { rootCategories, getChildren } = useCategoriesContext();
   const [categoriesOpen, setCategoriesOpen] = useState(false);
 
-  const handleCategoryClick = (id: string) => {
-    const children = getChildren(id);
-    if (children.length > 0) {
-      navigate(`/categories?parent=${id}`);
-    } else {
-      navigate(`/categories/${id}`);
-    }
-  };
+  // Skip "Tags" root node — show its children as top-level
+  const tagsRoot = rootCategories.find((c) => c.name === 'Tags');
+  const topLevelCategories = tagsRoot ? getChildren(tagsRoot.id) : rootCategories;
 
   return (
     <Sidebar collapsible="icon">
@@ -245,15 +233,14 @@ export function AppSidebar() {
                       {categoriesOpen && !collapsed && (
                         <div className="mt-0.5 mb-1">
                           <div className="max-h-[40vh] overflow-y-auto scrollbar-thin">
-                            {rootCategories.map((cat) => (
+                            {topLevelCategories.map((cat) => (
                                 <SidebarCategoryNode
                                   key={cat.id}
                                   category={cat}
                                   getChildren={getChildren}
-                                  onClickCategory={handleCategoryClick}
+                                  navigate={navigate}
                                 />
                               ))}
-                            
                           </div>
                         </div>
                       )}
