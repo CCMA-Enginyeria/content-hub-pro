@@ -27,6 +27,11 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
   const [parentId, setParentId] = useState<string | null>(category?.parentId ?? null);
   const [isActive, setIsActive] = useState(category?.isActive ?? true);
   const [isVisibleOnPublication, setIsVisibleOnPublication] = useState(category?.isVisibleOnPublication ?? true);
+  const [keywords, setKeywords] = useState(category?.keywords ?? '');
+  const [comments, setComments] = useState(category?.comments ?? '');
+  const [type, setType] = useState<'Node' | 'Fulla'>(category?.type ?? 'Fulla');
+  const [order, setOrder] = useState(category?.order ?? 1);
+  const [weight, setWeight] = useState(category?.weight ?? 0);
 
   useEffect(() => {
     if (!isEditing && name) {
@@ -54,7 +59,7 @@ export function CategoryForm({ category, allCategories, onSave, onUpdate, onCanc
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const data: CategoryFormData = { name, textId, description, parentId, isActive, isVisibleOnPublication };
+    const data: CategoryFormData = { name, textId, description, parentId, isActive, isVisibleOnPublication, keywords, comments, type, order, weight };
     if (isEditing && onUpdate) {
       onUpdate(category.id, data);
     } else {

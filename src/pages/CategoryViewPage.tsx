@@ -115,28 +115,87 @@ export default function CategoryViewPage() {
 
       {/* ── Detail body ── */}
       <div className="mx-auto w-full max-w-3xl px-6 py-8 space-y-8">
-        {/* Text ID / URL */}
-        <div className="space-y-1">
-          <Label>Identificador textual</Label>
-          <ReadonlyField className="font-mono text-sm uppercase">{category.textId}</ReadonlyField>
-          <p className="text-xs text-muted-foreground pt-1">
-            La URL friendly serà visible quan aquest ítem estigui en estat de publicació
-          </p>
-        </div>
-
-        {/* Name */}
+        {/* Nom */}
         <div className="space-y-1">
           <Label>Nom</Label>
           <ReadonlyField className="text-base font-medium">{category.name}</ReadonlyField>
         </div>
 
-        {/* Description */}
+        {/* ID de la categoria */}
         <div className="space-y-1">
-          <Label>Descripció</Label>
-          <ReadonlyField>{category.description || <span className="text-muted-foreground italic">Sense descripció</span>}</ReadonlyField>
+          <Label>ID de la categoria</Label>
+          <ReadonlyField className="font-mono text-sm">{category.id}</ReadonlyField>
         </div>
 
-        {/* Parent */}
+        {/* UID (textId) */}
+        <div className="space-y-1">
+          <Label>UID</Label>
+          <ReadonlyField className="font-mono text-sm uppercase">{category.textId}</ReadonlyField>
+        </div>
+
+        {/* Paraules clau */}
+        <div className="space-y-1">
+          <Label>Paraules clau</Label>
+          <ReadonlyField>{category.keywords || <span className="text-muted-foreground italic">—</span>}</ReadonlyField>
+        </div>
+
+        {/* Comentaris */}
+        <div className="space-y-1">
+          <Label>Comentaris</Label>
+          <ReadonlyField>{category.comments || <span className="text-muted-foreground italic">—</span>}</ReadonlyField>
+        </div>
+
+        {/* Descripció */}
+        <div className="space-y-1">
+          <Label>Descripció</Label>
+          <ReadonlyField>{category.description || <span className="text-muted-foreground italic">—</span>}</ReadonlyField>
+        </div>
+
+        {/* Tipus */}
+        <div className="space-y-1">
+          <Label>Tipus</Label>
+          <ReadonlyField>{category.type}</ReadonlyField>
+        </div>
+
+        {/* Ordre */}
+        <div className="space-y-1">
+          <Label>Ordre</Label>
+          <ReadonlyField>{category.order}</ReadonlyField>
+        </div>
+
+        {/* Estat */}
+        <div className="space-y-1">
+          <Label>Estat</Label>
+          <ReadonlyField>
+            <Badge
+              variant="outline"
+              className={cn(
+                'text-[10px] font-bold uppercase tracking-wide border-0 px-2.5 py-0.5',
+                category.isActive
+                  ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300'
+                  : 'bg-muted text-muted-foreground'
+              )}
+            >
+              {category.isActive ? 'Activat' : 'Desactivat'}
+            </Badge>
+          </ReadonlyField>
+        </div>
+
+        {/* No visible a publicació */}
+        <div className="space-y-1">
+          <Label>No visible a publicació</Label>
+          <ReadonlyField>
+            <input type="checkbox" checked={!category.isVisibleOnPublication} disabled className="h-4 w-4 accent-primary" />
+          </ReadonlyField>
+        </div>
+
+        {/* Pes */}
+        <div className="space-y-1">
+          <Label>Pes</Label>
+          <ReadonlyField>{category.weight}</ReadonlyField>
+        </div>
+
+        {/* Categoria pare */}
         <div className="space-y-1">
           <Label>Categoria pare</Label>
           <ReadonlyField>
@@ -153,7 +212,7 @@ export default function CategoryViewPage() {
           </ReadonlyField>
         </div>
 
-        {/* Children */}
+        {/* Subcategories */}
         {children.length > 0 && (
           <div className="space-y-1">
             <Label>Subcategories ({children.length})</Label>
@@ -178,38 +237,6 @@ export default function CategoryViewPage() {
             </div>
           </div>
         )}
-
-        {/* Mobile status */}
-        <div className="md:hidden space-y-4">
-          <div className="flex items-center justify-between py-3 border-b">
-            <span className="text-sm font-medium">Estat</span>
-            <Badge
-              variant="outline"
-              className={cn(
-                'text-[10px] font-bold uppercase tracking-wide border-0 px-2.5 py-0.5',
-                category.isActive
-                  ? 'bg-emerald-100 text-emerald-800'
-                  : 'bg-muted text-muted-foreground'
-              )}
-            >
-              {category.isActive ? 'Activa' : 'Inactiva'}
-            </Badge>
-          </div>
-          <div className="flex items-center justify-between py-3 border-b">
-            <span className="text-sm font-medium">Visibilitat</span>
-            <Badge
-              variant="outline"
-              className={cn(
-                'text-[10px] font-bold uppercase tracking-wide border-0 px-2.5 py-0.5',
-                category.isVisibleOnPublication
-                  ? 'bg-blue-100 text-blue-800'
-                  : 'bg-muted text-muted-foreground'
-              )}
-            >
-              {category.isVisibleOnPublication ? 'Visible' : 'Oculta'}
-            </Badge>
-          </div>
-        </div>
 
         {/* Dates */}
         <div className="border-t pt-6 mt-8">

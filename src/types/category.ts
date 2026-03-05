@@ -6,6 +6,11 @@ export interface Category {
   parentId: string | null;
   isActive: boolean;
   isVisibleOnPublication: boolean;
+  keywords: string;
+  comments: string;
+  type: 'Node' | 'Fulla';
+  order: number;
+  weight: number;
   createdAt: string;
   updatedAt: string;
 }
