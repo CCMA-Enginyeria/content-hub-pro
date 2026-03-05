@@ -13,6 +13,7 @@ import {
   ChevronRight,
   ChevronsLeft,
   ChevronsRight,
+  Merge,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
@@ -26,6 +27,7 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import { useCategoriesContext } from '@/contexts/CategoriesContext';
+import { MoveCategoryDialog } from '@/components/categories/MoveCategoryDialog';
 import {
   Select,
   SelectContent,
@@ -49,6 +51,7 @@ export function CategoryList({ categories, selectedId, onSelect, allCategories }
   const navigate = useNavigate();
   const { deleteCategory } = useCategoriesContext();
   const [deleteTarget, setDeleteTarget] = useState<Category | null>(null);
+  const [moveTarget, setMoveTarget] = useState<Category | null>(null);
 
   const getParentName = (parentId: string | null) =>
     parentId ? allCategories.find((c) => c.id === parentId)?.name ?? '—' : '—';
@@ -175,6 +178,15 @@ export function CategoryList({ categories, selectedId, onSelect, allCategories }
                     >
                       <Trash2 className="h-4 w-4" />
                     </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-7 w-7 text-muted-foreground hover:text-foreground"
+                      onClick={() => setMoveTarget(cat)}
+                      title="Mou"
+                    >
+                      <Merge className="h-4 w-4" />
+                    </Button>
                   </div>
                 </td>
               </tr>
@@ -264,6 +276,20 @@ export function CategoryList({ categories, selectedId, onSelect, allCategories }
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
+
+      {moveTarget && (
+        <MoveCategoryDialog
+          open={!!moveTarget}
+          onOpenChange={(open) => !open && setMoveTarget(null)}
+          sourceCategory={moveTarget}
+          allCategories={allCategories}
+          onConfirm={(targetId, deleteSource) => {
+            // TODO: implement move logic
+            console.log('Move', moveTarget.id, 'to', targetId, 'delete source:', deleteSource);
+            setMoveTarget(null);
+          }}
+        />
+      )}
     </div>
   );
 }
