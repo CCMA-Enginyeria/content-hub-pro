@@ -60,38 +60,6 @@ export default function CategoryViewPage() {
             </div>
           </div>
 
-          {/* Center: status badges */}
-          <div className="hidden md:flex items-center gap-4 text-sm">
-            <div className="flex items-center gap-2">
-              <span className="text-muted-foreground text-xs font-medium">Estat</span>
-              <Badge
-                variant="outline"
-                className={cn(
-                  'text-[10px] font-bold uppercase tracking-wide border-0 px-2.5 py-0.5',
-                  category.isActive
-                    ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300'
-                    : 'bg-muted text-muted-foreground'
-                )}
-              >
-                {category.isActive ? 'Activa' : 'Inactiva'}
-              </Badge>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-muted-foreground text-xs font-medium">Visible</span>
-              <Badge
-                variant="outline"
-                className={cn(
-                  'text-[10px] font-bold uppercase tracking-wide border-0 px-2.5 py-0.5',
-                  category.isVisibleOnPublication
-                    ? 'bg-blue-100 text-blue-800 dark:bg-blue-900/40 dark:text-blue-300'
-                    : 'bg-muted text-muted-foreground'
-                )}
-              >
-                {category.isVisibleOnPublication ? 'Visible' : 'Oculta'}
-              </Badge>
-            </div>
-          </div>
-
           {/* Right: actions */}
           <div className="flex items-center gap-2 shrink-0">
             <Button size="sm" className="gap-1.5 font-semibold" onClick={() => navigate(`/categories/${category.id}/edit`)}>
