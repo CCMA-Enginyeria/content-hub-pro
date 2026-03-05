@@ -3,7 +3,17 @@ import { useNavigate } from 'react-router-dom';
 import { Category } from '@/types/category';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Eye, EyeOff, ChevronLeft, ChevronRight, Pencil, Trash2, Search } from 'lucide-react';
+import {
+  Eye,
+  EyeOff,
+  Pencil,
+  Trash2,
+  Search,
+  ChevronLeft,
+  ChevronRight,
+  ChevronsLeft,
+  ChevronsRight,
+} from 'lucide-react';
 import { cn } from '@/lib/utils';
 import {
   AlertDialog,
@@ -16,8 +26,15 @@ import {
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
 import { useCategoriesContext } from '@/contexts/CategoriesContext';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 
-const PAGE_SIZE = 20;
+const PAGE_SIZES = [10, 20, 50, 100];
 
 interface CategoryListProps {
   categories: Category[];
@@ -28,6 +45,7 @@ interface CategoryListProps {
 
 export function CategoryList({ categories, selectedId, onSelect, allCategories }: CategoryListProps) {
   const [page, setPage] = useState(0);
+  const [pageSize, setPageSize] = useState(20);
   const navigate = useNavigate();
   const { deleteCategory } = useCategoriesContext();
   const [deleteTarget, setDeleteTarget] = useState<Category | null>(null);
@@ -44,9 +62,9 @@ export function CategoryList({ categories, selectedId, onSelect, allCategories }
     );
   }
 
-  const totalPages = Math.ceil(categories.length / PAGE_SIZE);
+  const totalPages = Math.ceil(categories.length / pageSize);
   const safePage = Math.min(page, totalPages - 1);
-  const paged = categories.slice(safePage * PAGE_SIZE, (safePage + 1) * PAGE_SIZE);
+  const paged = categories.slice(safePage * pageSize, (safePage + 1) * pageSize);
 
   const handleDeleteConfirm = () => {
     if (deleteTarget) {
@@ -55,59 +73,107 @@ export function CategoryList({ categories, selectedId, onSelect, allCategories }
     }
   };
 
+  const handlePageSizeChange = (value: string) => {
+    setPageSize(Number(value));
+    setPage(0);
+  };
+
+  // Build page number buttons
+  const getPageNumbers = () => {
+    const pages: (number | '...')[] = [];
+    if (totalPages <= 7) {
+      for (let i = 0; i < totalPages; i++) pages.push(i);
+    } else {
+      pages.push(0);
+      if (safePage > 2) pages.push('...');
+      const start = Math.max(1, safePage - 1);
+      const end = Math.min(totalPages - 2, safePage + 1);
+      for (let i = start; i <= end; i++) pages.push(i);
+      if (safePage < totalPages - 3) pages.push('...');
+      pages.push(totalPages - 1);
+    }
+    return pages;
+  };
+
   return (
-    <div className="space-y-3">
-      <div className="overflow-hidden rounded-lg border">
+    <div className="space-y-0">
+      {/* Table */}
+      <div className="overflow-hidden border-b">
         <table className="w-full text-sm">
           <thead>
-            <tr className="border-b bg-primary/5">
-              <th className="px-4 py-2.5 text-left font-semibold text-foreground uppercase text-xs tracking-wider">Nom</th>
-              <th className="px-4 py-2.5 text-left font-semibold text-foreground uppercase text-xs tracking-wider hidden md:table-cell">ID textual</th>
-              <th className="px-4 py-2.5 text-left font-semibold text-foreground uppercase text-xs tracking-wider hidden lg:table-cell">Pare</th>
-              <th className="px-4 py-2.5 text-center font-semibold text-foreground uppercase text-xs tracking-wider">Estat</th>
-              <th className="px-4 py-2.5 text-center font-semibold text-foreground uppercase text-xs tracking-wider hidden sm:table-cell">Visible</th>
-              <th className="px-4 py-2.5 text-right font-semibold text-foreground uppercase text-xs tracking-wider">Accions</th>
+            <tr className="border-b">
+              <th className="px-4 py-3 text-left font-semibold text-foreground uppercase text-xs tracking-wider">Nom</th>
+              <th className="px-4 py-3 text-left font-semibold text-foreground uppercase text-xs tracking-wider w-[100px] hidden md:table-cell">ID</th>
+              <th className="px-4 py-3 text-left font-semibold text-foreground uppercase text-xs tracking-wider w-[90px]">Estat</th>
+              <th className="px-4 py-3 text-left font-semibold text-foreground uppercase text-xs tracking-wider hidden lg:table-cell">Pare</th>
+              <th className="px-4 py-3 text-left font-semibold text-foreground uppercase text-xs tracking-wider hidden xl:table-cell w-[170px]">Actualitzat</th>
+              <th className="px-4 py-3 text-right font-semibold text-foreground uppercase text-xs tracking-wider w-[120px]">Accions</th>
             </tr>
           </thead>
           <tbody>
-            {paged.map((cat, i) => (
+            {paged.map((cat) => (
               <tr
                 key={cat.id}
                 onClick={() => onSelect(cat.id)}
-                className={cn(
-                  'cursor-pointer border-b transition-colors last:border-0',
-                  i % 2 === 0 ? 'bg-card' : 'bg-muted/30',
-                  'hover:bg-accent/10'
-                )}
+                className="cursor-pointer border-b transition-colors last:border-0 hover:bg-muted/40"
               >
-                <td className="px-4 py-3 font-medium">{cat.name}</td>
-                <td className="px-4 py-3 font-mono text-xs text-muted-foreground hidden md:table-cell uppercase">{cat.textId}</td>
-                <td className="px-4 py-3 text-muted-foreground hidden lg:table-cell">{getParentName(cat.parentId)}</td>
-                <td className="px-4 py-3 text-center">
+                <td className="px-4 py-3 font-medium text-foreground">{cat.name}</td>
+                <td className="px-4 py-3 font-mono text-xs text-muted-foreground hidden md:table-cell">{cat.textId}</td>
+                <td className="px-4 py-3">
                   <Badge
-                    variant={cat.isActive ? 'default' : 'secondary'}
+                    variant="outline"
                     className={cn(
-                      'text-[11px] font-semibold uppercase',
-                      cat.isActive ? 'bg-success hover:bg-success/90' : ''
+                      'text-[10px] font-bold uppercase tracking-wide border-0 px-2.5 py-0.5',
+                      cat.isActive
+                        ? 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900/40 dark:text-emerald-300'
+                        : 'bg-muted text-muted-foreground'
                     )}
                   >
                     {cat.isActive ? 'Activa' : 'Inactiva'}
                   </Badge>
                 </td>
-                <td className="px-4 py-3 text-center hidden sm:table-cell">
-                  {cat.isVisibleOnPublication ? (
-                    <Eye className="h-4 w-4 mx-auto text-success" />
-                  ) : (
-                    <EyeOff className="h-4 w-4 mx-auto text-muted-foreground/50" />
-                  )}
+                <td className="px-4 py-3 text-muted-foreground hidden lg:table-cell">{getParentName(cat.parentId)}</td>
+                <td className="px-4 py-3 text-muted-foreground text-xs hidden xl:table-cell">
+                  {new Date(cat.updatedAt).toLocaleDateString('ca-ES', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  })}
                 </td>
                 <td className="px-4 py-3 text-right" onClick={(e) => e.stopPropagation()}>
-                  <div className="flex items-center justify-end gap-1">
-                    <Button variant="ghost" size="icon" className="h-7 w-7" onClick={() => navigate(`/categories/${cat.id}/edit`)} title="Editar">
-                      <Pencil className="h-3.5 w-3.5" />
+                  <div className="flex items-center justify-end gap-0.5">
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-7 w-7 text-muted-foreground hover:text-foreground"
+                      onClick={() => navigate(`/categories/${cat.id}`)}
+                      title="Veure"
+                    >
+                      {cat.isVisibleOnPublication ? (
+                        <Eye className="h-4 w-4" />
+                      ) : (
+                        <EyeOff className="h-4 w-4 opacity-40" />
+                      )}
                     </Button>
-                    <Button variant="ghost" size="icon" className="h-7 w-7 text-destructive hover:bg-destructive/10" onClick={() => setDeleteTarget(cat)} title="Eliminar">
-                      <Trash2 className="h-3.5 w-3.5" />
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-7 w-7 text-muted-foreground hover:text-foreground"
+                      onClick={() => navigate(`/categories/${cat.id}/edit`)}
+                      title="Editar"
+                    >
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="h-7 w-7 text-muted-foreground hover:text-destructive"
+                      onClick={() => setDeleteTarget(cat)}
+                      title="Eliminar"
+                    >
+                      <Trash2 className="h-4 w-4" />
                     </Button>
                   </div>
                 </td>
@@ -117,20 +183,67 @@ export function CategoryList({ categories, selectedId, onSelect, allCategories }
         </table>
       </div>
 
+      {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex items-center justify-between text-sm text-muted-foreground">
-          <span>
-            {safePage * PAGE_SIZE + 1}–{Math.min((safePage + 1) * PAGE_SIZE, categories.length)} de {categories.length}
-          </span>
-          <div className="flex items-center gap-1">
-            <Button variant="ghost" size="icon" className="h-8 w-8" disabled={safePage === 0} onClick={() => setPage(safePage - 1)}>
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
-            <span className="px-2 tabular-nums">{safePage + 1} / {totalPages}</span>
-            <Button variant="ghost" size="icon" className="h-8 w-8" disabled={safePage >= totalPages - 1} onClick={() => setPage(safePage + 1)}>
-              <ChevronRight className="h-4 w-4" />
-            </Button>
-          </div>
+        <div className="flex items-center justify-center gap-1 py-4">
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8"
+            disabled={safePage === 0}
+            onClick={() => setPage(0)}
+          >
+            <ChevronsLeft className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8"
+            disabled={safePage === 0}
+            onClick={() => setPage(safePage - 1)}
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+
+          {getPageNumbers().map((p, i) =>
+            p === '...' ? (
+              <span key={`dots-${i}`} className="px-1 text-muted-foreground text-sm">
+                …
+              </span>
+            ) : (
+              <Button
+                key={p}
+                variant={p === safePage ? 'default' : 'ghost'}
+                size="icon"
+                className={cn(
+                  'h-8 w-8 text-sm font-medium',
+                  p === safePage && 'bg-primary text-primary-foreground pointer-events-none'
+                )}
+                onClick={() => setPage(p)}
+              >
+                {p + 1}
+              </Button>
+            )
+          )}
+
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8"
+            disabled={safePage >= totalPages - 1}
+            onClick={() => setPage(safePage + 1)}
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-8 w-8"
+            disabled={safePage >= totalPages - 1}
+            onClick={() => setPage(totalPages - 1)}
+          >
+            <ChevronsRight className="h-4 w-4" />
+          </Button>
         </div>
       )}
 

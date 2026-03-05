@@ -4,7 +4,7 @@ import { useCategoriesContext } from '@/contexts/CategoriesContext';
 import { CategoryList } from '@/components/categories/CategoryList';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Search, Plus, Tags, X } from 'lucide-react';
+import { Search, Plus, ArrowLeft, X } from 'lucide-react';
 
 export default function CategoriesPage() {
   const {
@@ -26,7 +26,6 @@ export default function CategoriesPage() {
 
   const displayedCategories = useMemo(() => {
     if (parentId) {
-      // Collect all descendants recursively
       const descendants: typeof categories = [];
       const collect = (pid: string) => {
         const children = getChildren(pid);
@@ -36,7 +35,6 @@ export default function CategoriesPage() {
         });
       };
       collect(parentId);
-      // Apply search filter on top if active
       if (searchQuery.trim()) {
         const q = searchQuery.toLowerCase();
         return descendants.filter(
@@ -54,55 +52,69 @@ export default function CategoriesPage() {
     setSearchParams({});
   };
 
+  // Build breadcrumb title
+  const headerTitle = parentCategory
+    ? `Categories / ${parentCategory.name}`
+    : 'Categories';
+
   return (
     <div className="min-h-screen bg-background">
-      <header className="sticky top-0 z-10 bg-primary text-primary-foreground shadow-md">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
+      {/* Header bar */}
+      <header className="sticky top-0 z-10 border-b bg-background">
+        <div className="flex items-center justify-between px-6 py-3">
           <div className="flex items-center gap-3">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground">
-              <Tags className="h-5 w-5" />
-            </div>
-            <div>
-              <h1 className="text-lg font-semibold tracking-tight">Gestió de categories</h1>
-              <p className="text-xs text-primary-foreground/70">{categories.length} categories</p>
+            {parentCategory && (
+              <button
+                onClick={clearParentFilter}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </button>
+            )}
+            <div className="flex items-baseline gap-2">
+              <h1 className="text-base font-semibold text-foreground">{headerTitle}:</h1>
+              <span className="text-base text-primary font-medium">
+                {displayedCategories.length} registres
+              </span>
             </div>
           </div>
-          <Button onClick={() => navigate('/categories/new')} size="sm" className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold">
-            <Plus className="mr-1.5 h-4 w-4" />
-            Crea nou
-          </Button>
+          <div className="flex items-center gap-3">
+            <div className="relative max-w-[240px]">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Input
+                placeholder="Cercar..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-9 h-9"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+                >
+                  <X className="h-3.5 w-3.5" />
+                </button>
+              )}
+            </div>
+            <Button
+              onClick={() => navigate('/categories/new')}
+              size="sm"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold px-4"
+            >
+              Crea nou
+            </Button>
+          </div>
         </div>
       </header>
 
-      <div className="mx-auto max-w-7xl px-6 py-6">
-        <div className="mb-5 flex items-center gap-3">
-          {parentCategory && (
-            <div className="flex items-center gap-1.5 rounded-lg bg-primary/10 px-3 py-1.5 text-sm font-medium text-primary">
-              <span>Subcategories de: {parentCategory.name}</span>
-              <button onClick={clearParentFilter} className="ml-1 rounded-full p-0.5 hover:bg-primary/20">
-                <X className="h-3.5 w-3.5" />
-              </button>
-            </div>
-          )}
-          <div className="relative flex-1 max-w-sm">
-            <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-            <Input
-              placeholder="Cercar categories..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-9"
-            />
-          </div>
-        </div>
-
-        <div className="rounded-xl border bg-card p-4 shadow-sm">
-          <CategoryList
-            categories={displayedCategories}
-            selectedId={null}
-            onSelect={handleSelect}
-            allCategories={categories}
-          />
-        </div>
+      {/* List */}
+      <div className="px-0">
+        <CategoryList
+          categories={displayedCategories}
+          selectedId={null}
+          onSelect={handleSelect}
+          allCategories={categories}
+        />
       </div>
     </div>
   );
