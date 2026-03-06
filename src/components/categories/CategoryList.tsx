@@ -52,8 +52,15 @@ export function CategoryList({ categories, selectedId, onSelect, allCategories, 
   const [deleteTarget, setDeleteTarget] = useState<Category | null>(null);
   const [moveTarget, setMoveTarget] = useState<Category | null>(null);
 
-  const getParentName = (parentId: string | null) =>
-    parentId ? allCategories.find((c) => c.id === parentId)?.name ?? '—' : '—';
+  const getCategoryPath = (cat: Category): string => {
+    const parts: string[] = [];
+    let current: Category | undefined = allCategories.find((c) => c.id === cat.parentId);
+    while (current) {
+      parts.unshift(current.name);
+      current = current.parentId ? allCategories.find((c) => c.id === current!.parentId) : undefined;
+    }
+    return parts.length > 0 ? parts.join(' / ') : '—';
+  };
 
   if (categories.length === 0) {
     return (
@@ -134,7 +141,7 @@ export function CategoryList({ categories, selectedId, onSelect, allCategories, 
                     {cat.isActive ? 'Activa' : 'Inactiva'}
                   </Badge>
                 </td>
-                <td className="px-4 py-3 text-muted-foreground hidden lg:table-cell">{getParentName(cat.parentId)}</td>
+                <td className="px-4 py-3 text-muted-foreground hidden lg:table-cell text-xs">{getCategoryPath(cat)}</td>
                 <td className="px-4 py-3 text-muted-foreground text-xs hidden xl:table-cell">
                   {new Date(cat.updatedAt).toLocaleDateString('ca-ES', {
                     year: 'numeric',
