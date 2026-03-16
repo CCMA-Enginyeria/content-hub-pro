@@ -261,8 +261,6 @@ export function AppSidebar() {
               </CollapsibleContent>
             </SidebarGroup>
           </Collapsible>
-
-          <SidebarSection label="Sistema" items={systemItems} defaultOpen={false} />
         </SidebarContent>
 
         <SidebarFooter className="p-3">
