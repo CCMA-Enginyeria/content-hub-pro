@@ -14,7 +14,7 @@ import {
   Layout,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import dtyLogo from '@/assets/dty-logo.svg';
+import dtyLogo from '@/assets/dty-logo-2.svg';
 import { NavLink } from '@/components/NavLink';
 import { useCategoriesContext } from '@/contexts/CategoriesContext';
 import { Category } from '@/types/category';
@@ -177,13 +177,8 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
         <SidebarHeader className="p-4">
-          <div className="flex items-center gap-2.5">
-            <img src={dtyLogo} alt="DTY Logo" className="h-8 w-8 shrink-0" />
-            {!collapsed && (
-              <span className="text-sm font-semibold text-sidebar-foreground tracking-tight">
-                3Cat CMS
-              </span>
-            )}
+          <div className="flex items-center justify-center">
+            <img src={dtyLogo} alt="DTY Logo" className="h-9 w-auto shrink-0" />
           </div>
         </SidebarHeader>
 
