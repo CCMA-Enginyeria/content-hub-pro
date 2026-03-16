@@ -1,10 +1,8 @@
 import { useState } from 'react';
 import {
   Tags,
-  Tv,
   Globe,
   FileText,
-  Radio,
   Star,
   ChevronDown,
   ChevronRight,
@@ -13,12 +11,15 @@ import {
   Search,
   Layout,
   Layers,
+  Box,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import dtyLogo from '@/assets/dty-logo-2.svg';
 import { NavLink } from '@/components/NavLink';
 import { useCategoriesContext } from '@/contexts/CategoriesContext';
 import { Category } from '@/types/category';
+import { topLevelDomains } from '@/data/contentTree';
+import { ContentDomain } from '@/types/contentTree';
 
 import {
   Sidebar,
@@ -39,10 +40,59 @@ import {
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 
-const contingutItems = [
-  { title: 'Emissions', url: '/emissions', icon: Radio },
-  { title: 'programesTv3', url: '/programes-tv3', icon: Tv },
-];
+/* ── Content domain node for sidebar ── */
+
+function SidebarContentDomainNode({
+  domain,
+  level = 0,
+}: {
+  domain: ContentDomain;
+  level?: number;
+}) {
+  const [expanded, setExpanded] = useState(false);
+  const { state } = useSidebar();
+  const collapsed = state === 'collapsed';
+  const hasTipologies = domain.tipologies && domain.tipologies.length > 0;
+
+  if (collapsed) return null;
+
+  return (
+    <div>
+      <div
+        className="group flex items-center gap-1 rounded-md px-1.5 py-1 text-xs text-sidebar-foreground/80 hover:bg-sidebar-accent transition-colors cursor-pointer"
+        style={{ paddingLeft: `${level * 12 + 8}px` }}
+      >
+        {hasTipologies ? (
+          <button
+            onClick={(e) => { e.stopPropagation(); setExpanded(!expanded); }}
+            className="shrink-0 p-0.5 rounded hover:bg-sidebar-accent"
+          >
+            {expanded ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
+          </button>
+        ) : (
+          <span className="w-4" />
+        )}
+        <Box className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
+        <span className="truncate flex-1">{domain.localName}</span>
+      </div>
+      {expanded && hasTipologies && (
+        <div>
+          {domain.tipologies!.map((tip, i) => (
+            <div
+              key={`${tip.idName}-${i}`}
+              className="flex items-center gap-1 rounded-md px-1.5 py-1 text-xs text-sidebar-foreground/60 hover:bg-sidebar-accent transition-colors cursor-pointer"
+              style={{ paddingLeft: `${(level + 1) * 12 + 8}px` }}
+            >
+              <span className="w-4" />
+              <FileText className="h-3 w-3 shrink-0 text-muted-foreground" />
+              <span className="truncate flex-1">{tip.localName}</span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 /* ── Mini tree node for sidebar ── */
 
