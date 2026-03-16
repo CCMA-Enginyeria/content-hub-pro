@@ -1,0 +1,2557 @@
+{
+    "items": [
+        {
+            "idName": "CCMA",
+            "localName": "CCMA",
+            "type": "domain",
+            "subDomains": [
+                {
+                    "idName": "CCMAI",
+                    "localName": "CCRTV Interactiva",
+                    "type": "domain",
+                    "subDomains": [
+                        {
+                            "idName": "PORI",
+                            "localName": "Portals Interactiva",
+                            "type": "domain",
+                            "subDomains": [
+                                {
+                                    "idName": "AC20",
+                                    "localName": "3alacarta2.0 Portals",
+                                    "type": "domain",
+                                    "subDomains": [
+                                        {
+                                            "idName": "MESIN",
+                                            "localName": "Més Info",
+                                            "type": "domain",
+                                            "subDomains": [
+                                                {
+                                                    "idName": "BLOCC",
+                                                    "localName": "Blocs de Continguts",
+                                                    "type": "domain"
+                                                },
+                                                {
+                                                    "idName": "UNITC",
+                                                    "localName": "Unitats de Continguts",
+                                                    "type": "domain"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "idName": "COM",
+                                    "localName": "Departament Comercial",
+                                    "type": "domain"
+                                },
+                                {
+                                    "idName": "ESP",
+                                    "localName": "Elsesports",
+                                    "type": "domain",
+                                    "tipologies": [
+                                        {
+                                            "idName": "NOT_NOTICIA",
+                                            "localName": "Notícies",
+                                            "defaultDomainIdName": "ESP",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DEBAT_MINUT",
+                                            "localName": "Entrada minut",
+                                            "defaultDomainIdName": "ESP",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DEBAT_MINUTAMINU",
+                                            "localName": "Minut a minut",
+                                            "defaultDomainIdName": "ESP",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_CONCURS",
+                                            "localName": "Concurs",
+                                            "defaultDomainIdName": "ESP",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_ENQUESTA",
+                                            "localName": "Enquesta",
+                                            "defaultDomainIdName": "ESP",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_GALERIA",
+                                            "localName": "Galeria Fotos",
+                                            "defaultDomainIdName": "ESP",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_VIDEO_MM",
+                                            "localName": "Vídeo",
+                                            "defaultDomainIdName": "ESP",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "NOT_LINK",
+                                            "localName": "Enllaços",
+                                            "defaultDomainIdName": "ESP",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "PTVC_PROGRAMA",
+                                            "localName": "Programa vídeos",
+                                            "defaultDomainIdName": "ESP",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "WCR_AUDIO_MM",
+                                            "localName": "Àudio",
+                                            "defaultDomainIdName": "ESP",
+                                            "type": "tipology"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "idName": "FMA",
+                                    "localName": "Fundació la marató de TV3",
+                                    "type": "domain",
+                                    "tipologies": [
+                                        {
+                                            "idName": "DTY_CONCURS",
+                                            "localName": "Concurs",
+                                            "defaultDomainIdName": "FMA",
+                                            "type": "tipology"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "idName": "INNOV",
+                                    "localName": "Innovació",
+                                    "type": "domain"
+                                },
+                                {
+                                    "idName": "NOT",
+                                    "localName": "Notícies",
+                                    "type": "domain",
+                                    "tipologies": [
+                                        {
+                                            "idName": "DEBAT_MINUT",
+                                            "localName": "Entrada minut",
+                                            "defaultDomainIdName": "NOT",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DEBAT_MINUTAMINU",
+                                            "localName": "Minut a minut",
+                                            "defaultDomainIdName": "NOT",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_CONCURS",
+                                            "localName": "Concurs",
+                                            "defaultDomainIdName": "NOT",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_ENQUESTA",
+                                            "localName": "Enquesta",
+                                            "defaultDomainIdName": "NOT",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_GALERIA",
+                                            "localName": "Galeria Fotos",
+                                            "defaultDomainIdName": "NOT",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_GMAP",
+                                            "localName": "Google Maps",
+                                            "defaultDomainIdName": "NOT",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_VIDEO_MM",
+                                            "localName": "Vídeo",
+                                            "defaultDomainIdName": "NOT",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "NOT_AUTOR",
+                                            "localName": "Autors",
+                                            "defaultDomainIdName": "NOT",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "NOT_BLOG",
+                                            "localName": "Blogs",
+                                            "defaultDomainIdName": "NOT",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "NOT_ESPBREU",
+                                            "localName": "Especials",
+                                            "defaultDomainIdName": "NOT",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "NOT_LINK",
+                                            "localName": "Enllaços",
+                                            "defaultDomainIdName": "NOT",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "NOT_NOTICIA",
+                                            "localName": "Notícia",
+                                            "defaultDomainIdName": "NOT",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "WCR_AUDIO_MM",
+                                            "localName": "Àudio",
+                                            "defaultDomainIdName": "NOT",
+                                            "type": "tipology"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "idName": "WMU",
+                                    "localName": "Portal Catalunya Música",
+                                    "type": "domain",
+                                    "tipologies": [
+                                        {
+                                            "idName": "WCR_PROGRAMACIO",
+                                            "localName": "Programació Catalunya Música",
+                                            "defaultDomainIdName": "WMU",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "WCR_PROGRAMACIO",
+                                            "localName": "Programació Catalunya Clàssica",
+                                            "defaultDomainIdName": "WMU",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "WCR_PROGRAMA",
+                                            "localName": "Programes",
+                                            "defaultDomainIdName": "WMU",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "WCR_SECCIO",
+                                            "localName": "Seccions de programes",
+                                            "defaultDomainIdName": "WMU",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_CONCURS",
+                                            "localName": "Concurs",
+                                            "defaultDomainIdName": "WMU",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_DESTACAT",
+                                            "localName": "Destacats",
+                                            "defaultDomainIdName": "WMU",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_ENQUESTA",
+                                            "localName": "Enquesta",
+                                            "defaultDomainIdName": "WMU",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_GMAP",
+                                            "localName": "Google Maps",
+                                            "defaultDomainIdName": "WMU",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_SECCIO",
+                                            "localName": "Secció",
+                                            "defaultDomainIdName": "WMU",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_VIDEO_MM",
+                                            "localName": "Vídeo",
+                                            "defaultDomainIdName": "WMU",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "NOT_NOTICIA",
+                                            "localName": "Notícia",
+                                            "defaultDomainIdName": "WMU",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "WCR_AUDIO_MM",
+                                            "localName": "Àudio",
+                                            "defaultDomainIdName": "WMU",
+                                            "type": "tipology"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "idName": "WCR",
+                                    "localName": "Portal Catalunya Ràdio ANTIC",
+                                    "type": "domain",
+                                    "tipologies": [
+                                        {
+                                            "idName": "WCR_PROGRAMACIO",
+                                            "localName": "Programació Catalunya Ràdio",
+                                            "defaultDomainIdName": "WCR",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "WCR_PROGRAMACIO",
+                                            "localName": "Programació iCatFM",
+                                            "defaultDomainIdName": "WCR",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "WCR_PROGRAMACIO",
+                                            "localName": "Programació Catalunya Música",
+                                            "defaultDomainIdName": "WCR",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "WCR_PROGRAMACIO",
+                                            "localName": "Programació Catalunya Clàssica",
+                                            "defaultDomainIdName": "WCR",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "WCR_PROGRAMACIO",
+                                            "localName": "Programació Catalunya Informació",
+                                            "defaultDomainIdName": "WCR",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "WCR_PROGRAMA",
+                                            "localName": "Programes",
+                                            "defaultDomainIdName": "WCR",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "WCR_SECCIO",
+                                            "localName": "Seccions de programes",
+                                            "defaultDomainIdName": "WCR",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "WCR_AUDIO_MM",
+                                            "localName": "Àudio a la carta",
+                                            "defaultDomainIdName": "WCR",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_AUDIO_MAPING",
+                                            "localName": "Maping àudios",
+                                            "defaultDomainIdName": "WCR",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_CONCURS",
+                                            "localName": "Concurs",
+                                            "defaultDomainIdName": "WCR",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_EMBED",
+                                            "localName": "Embed",
+                                            "defaultDomainIdName": "WCR",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_ENQUESTA",
+                                            "localName": "Enquesta",
+                                            "defaultDomainIdName": "WCR",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_GALERIA",
+                                            "localName": "Galeria Fotos",
+                                            "defaultDomainIdName": "WCR",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_VIDEO_MM",
+                                            "localName": "Vídeo",
+                                            "defaultDomainIdName": "WCR",
+                                            "type": "tipology"
+                                        }
+                                    ],
+                                    "subDomains": [
+                                        {
+                                            "idName": "CR25",
+                                            "localName": "Catràdio 25 anys",
+                                            "type": "domain",
+                                            "tipologies": [
+                                                {
+                                                    "idName": "DTY_CONCURS",
+                                                    "localName": "Concurs",
+                                                    "defaultDomainIdName": "CR25",
+                                                    "type": "tipology"
+                                                },
+                                                {
+                                                    "idName": "DTY_ENQUESTA",
+                                                    "localName": "Enquesta",
+                                                    "defaultDomainIdName": "CR25",
+                                                    "type": "tipology"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "idName": "ICR",
+                                            "localName": "En directe CR",
+                                            "type": "domain",
+                                            "tipologies": [
+                                                {
+                                                    "idName": "DTY_ENQUESTA",
+                                                    "localName": "Enquesta",
+                                                    "defaultDomainIdName": "ICR",
+                                                    "type": "tipology"
+                                                },
+                                                {
+                                                    "idName": "DTY_OPINA",
+                                                    "localName": "Opinions",
+                                                    "defaultDomainIdName": "ICR",
+                                                    "type": "tipology"
+                                                },
+                                                {
+                                                    "idName": "WCR_PROGRAMA",
+                                                    "localName": "Programa àudios",
+                                                    "defaultDomainIdName": "ICR",
+                                                    "type": "tipology"
+                                                },
+                                                {
+                                                    "idName": "WCR_PROGRAMACIO",
+                                                    "localName": "Programació",
+                                                    "defaultDomainIdName": "ICR",
+                                                    "type": "tipology"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "idName": "IVR",
+                                            "localName": "IVR Venda d'entrades",
+                                            "type": "domain"
+                                        },
+                                        {
+                                            "idName": "SCR",
+                                            "localName": "Sala de premsa CR",
+                                            "type": "domain",
+                                            "tipologies": [
+                                                {
+                                                    "idName": "WCR_AUDIO_MM",
+                                                    "localName": "Àudio",
+                                                    "defaultDomainIdName": "SCR",
+                                                    "type": "tipology"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "idName": "CORPO",
+                                    "localName": "Portal CCRTV",
+                                    "type": "domain",
+                                    "subDomains": [
+                                        {
+                                            "idName": "ESPRO",
+                                            "localName": "Espai proveïdors CCRTV",
+                                            "type": "domain"
+                                        },
+                                        {
+                                            "idName": "GCCRT",
+                                            "localName": "Gestió web corpo",
+                                            "type": "domain"
+                                        },
+                                        {
+                                            "idName": "SATC",
+                                            "localName": "Portal d'Atenció",
+                                            "type": "domain"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "idName": "WCC",
+                                    "localName": "Portal iCat.cat",
+                                    "type": "domain",
+                                    "tipologies": [
+                                        {
+                                            "idName": "WCR_PROGRAMACIO",
+                                            "localName": "Programació iCatFM",
+                                            "defaultDomainIdName": "WCC",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "WCR_PROGRAMA",
+                                            "localName": "Programes",
+                                            "defaultDomainIdName": "WCC",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_EMBED",
+                                            "localName": "Embed",
+                                            "defaultDomainIdName": "WCC",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_SECCIOWEB",
+                                            "localName": "Seccio Web",
+                                            "defaultDomainIdName": "WCC",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_VIDEO_MM",
+                                            "localName": "Vídeo",
+                                            "defaultDomainIdName": "WCC",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "WCR_AUDIO_MM",
+                                            "localName": "Àudio",
+                                            "defaultDomainIdName": "WCC",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "WCR_SECCIO",
+                                            "localName": "Seccions de programes",
+                                            "defaultDomainIdName": "WCC",
+                                            "type": "tipology"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "idName": "RIT",
+                                    "localName": "Portal Ritmes",
+                                    "type": "domain",
+                                    "tipologies": [
+                                        {
+                                            "idName": "DTY_CONCURS",
+                                            "localName": "Concurs",
+                                            "defaultDomainIdName": "RIT",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_VIDEO_MM",
+                                            "localName": "Vídeo",
+                                            "defaultDomainIdName": "RIT",
+                                            "type": "tipology"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "idName": "PTVC",
+                                    "localName": "Portal TVC",
+                                    "type": "domain",
+                                    "tipologies": [
+                                        {
+                                            "idName": "DTY_CONCURS",
+                                            "localName": "Concurs",
+                                            "defaultDomainIdName": "PTVC",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_ENQUESTA",
+                                            "localName": "Enquesta",
+                                            "defaultDomainIdName": "PTVC",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_GALERIA",
+                                            "localName": "Galeria Fotos",
+                                            "defaultDomainIdName": "PTVC",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_SECCIOWEB",
+                                            "localName": "Seccio Web",
+                                            "defaultDomainIdName": "PTVC",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_TIRACONTINGU",
+                                            "localName": "Tira de continguts",
+                                            "defaultDomainIdName": "PTVC",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_VIDEO_MM",
+                                            "localName": "Vídeo",
+                                            "defaultDomainIdName": "PTVC",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "PTVC_PROGRAMA",
+                                            "localName": "Programa vídeos",
+                                            "defaultDomainIdName": "PTVC",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "PTVC_SECCIO",
+                                            "localName": "Seccions de programes",
+                                            "defaultDomainIdName": "PTVC",
+                                            "type": "tipology"
+                                        }
+                                    ],
+                                    "subDomains": [
+                                        {
+                                            "idName": "TVCI",
+                                            "localName": "Apartat TVCi",
+                                            "type": "domain"
+                                        },
+                                        {
+                                            "idName": "AT3",
+                                            "localName": "Aquí TV3",
+                                            "type": "domain"
+                                        },
+                                        {
+                                            "idName": "CAR",
+                                            "localName": "Cartellera",
+                                            "type": "domain"
+                                        },
+                                        {
+                                            "idName": "TNC",
+                                            "localName": "TNC",
+                                            "type": "domain",
+                                            "tipologies": [
+                                                {
+                                                    "idName": "DTY_CONCURS",
+                                                    "localName": "Concurs",
+                                                    "defaultDomainIdName": "TNC",
+                                                    "type": "tipology"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "idName": "TV3RE",
+                                            "localName": "TV3 Recomana",
+                                            "type": "domain",
+                                            "tipologies": [
+                                                {
+                                                    "idName": "DTY_GMAP",
+                                                    "localName": "Google Maps",
+                                                    "defaultDomainIdName": "TV3RE",
+                                                    "type": "tipology"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "idName": "INV",
+                                    "localName": "Revista Innovació",
+                                    "type": "domain"
+                                },
+                                {
+                                    "idName": "SP3",
+                                    "localName": "Super3 i K3",
+                                    "type": "domain",
+                                    "tipologies": [
+                                        {
+                                            "idName": "DTY_CONCURS",
+                                            "localName": "Concurs",
+                                            "defaultDomainIdName": "SP3",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_ENQUESTA",
+                                            "localName": "Enquesta",
+                                            "defaultDomainIdName": "SP3",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_GALERIA",
+                                            "localName": "Galeria Fotos",
+                                            "defaultDomainIdName": "SP3",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_GMAP",
+                                            "localName": "Google Maps",
+                                            "defaultDomainIdName": "SP3",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_VIDEO_MM",
+                                            "localName": "Vídeo",
+                                            "defaultDomainIdName": "SP3",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "SP3_ACTIVITA",
+                                            "localName": "Activitat",
+                                            "defaultDomainIdName": "SP3",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "SP3_JOC",
+                                            "localName": "Jocs",
+                                            "defaultDomainIdName": "SP3",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "TAG_LISTA",
+                                            "localName": "TAG Lista Votable",
+                                            "defaultDomainIdName": "SP3",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "WCR_AUDIO_MM",
+                                            "localName": "Àudio",
+                                            "defaultDomainIdName": "SP3",
+                                            "type": "tipology"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "idName": "TAG",
+                                    "localName": "TAGS",
+                                    "type": "domain",
+                                    "tipologies": [
+                                        {
+                                            "idName": "DTY_CONCURS",
+                                            "localName": "Concurs",
+                                            "defaultDomainIdName": "TAG",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_ENQUESTA",
+                                            "localName": "Enquesta",
+                                            "defaultDomainIdName": "TAG",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_TEST",
+                                            "localName": "Test",
+                                            "defaultDomainIdName": "TAG",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "DTY_VIDEO_MM",
+                                            "localName": "Vídeo",
+                                            "defaultDomainIdName": "TAG",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "TAG_LISTA",
+                                            "localName": "TAG Lista Votable",
+                                            "defaultDomainIdName": "TAG",
+                                            "type": "tipology"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "idName": "SRVIN",
+                            "localName": "Serveis Interactiva",
+                            "type": "domain",
+                            "subDomains": [
+                                {
+                                    "idName": "AC2",
+                                    "localName": "3alacarta2.0",
+                                    "type": "domain",
+                                    "subDomains": [
+                                        {
+                                            "idName": "AC2D",
+                                            "localName": "Directes 3AC2.0",
+                                            "type": "domain",
+                                            "tipologies": [
+                                                {
+                                                    "idName": "DIR_CANALS",
+                                                    "localName": "Directes canals",
+                                                    "defaultDomainIdName": "AC2D",
+                                                    "type": "tipology"
+                                                },
+                                                {
+                                                    "idName": "DIR_STREAMS",
+                                                    "localName": "Directes streams",
+                                                    "defaultDomainIdName": "AC2D",
+                                                    "type": "tipology"
+                                                },
+                                                {
+                                                    "idName": "DTY_VIDEO_MM",
+                                                    "localName": "Vídeo",
+                                                    "defaultDomainIdName": "AC2D",
+                                                    "type": "tipology"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "idName": "JOC",
+                                    "localName": "Jocs",
+                                    "type": "domain"
+                                },
+                                {
+                                    "idName": "MOB",
+                                    "localName": "Mòbils",
+                                    "type": "domain",
+                                    "subDomains": [
+                                        {
+                                            "idName": "JOCM",
+                                            "localName": "Jocs Mòbils",
+                                            "type": "domain"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "idName": "ADS",
+                                    "localName": "Publicitat",
+                                    "type": "domain",
+                                    "tipologies": [
+                                        {
+                                            "idName": "ADS_CREATIVITAT",
+                                            "localName": "Creativitat multimedia",
+                                            "defaultDomainIdName": "ADS",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "ADS_POSICIO",
+                                            "localName": "Posició Publicitaria",
+                                            "defaultDomainIdName": "ADS",
+                                            "type": "tipology"
+                                        },
+                                        {
+                                            "idName": "ADS_PUBLICITAT",
+                                            "localName": "Agrupació Publicitaria",
+                                            "defaultDomainIdName": "ADS",
+                                            "type": "tipology"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "idName": "TDT",
+                                    "localName": "TDT",
+                                    "type": "domain"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "idName": "TV3",
+                    "localName": "Televisió de Catalunya",
+                    "type": "domain",
+                    "subDomains": [
+                        {
+                            "idName": "CMTVC",
+                            "localName": "Comú TVC",
+                            "type": "domain"
+                        },
+                        {
+                            "idName": "MHD",
+                            "localName": "Minisite HD",
+                            "type": "domain"
+                        },
+                        {
+                            "idName": "PROG",
+                            "localName": "Programes TVC",
+                            "type": "domain",
+                            "subDomains": [
+                                {
+                                    "idName": "PROG1",
+                                    "localName": "A-M",
+                                    "type": "domain",
+                                    "subDomains": [
+                                        {
+                                            "idName": "TRM",
+                                            "localName": "30 Minuts",
+                                            "type": "domain",
+                                            "tipologies": [
+                                                {
+                                                    "idName": "DTY_VIDEO_MM",
+                                                    "localName": "Vídeo",
+                                                    "defaultDomainIdName": "TRM",
+                                                    "type": "tipology"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "idName": "CDB",
+                                            "localName": "Caçador de Bolets",
+                                            "type": "domain",
+                                            "tipologies": [
+                                                {
+                                                    "idName": "DTY_CONCURS",
+                                                    "localName": "Concurs",
+                                                    "defaultDomainIdName": "CDB",
+                                                    "type": "tipology"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "idName": "CUINA",
+                                            "localName": "Cuines OLD",
+                                            "type": "domain"
+                                        },
+                                        {
+                                            "idName": "EST",
+                                            "localName": "Espai Terra",
+                                            "type": "domain",
+                                            "tipologies": [
+                                                {
+                                                    "idName": "DTY_CONCURS",
+                                                    "localName": "Concurs",
+                                                    "defaultDomainIdName": "EST",
+                                                    "type": "tipology"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "idName": "INFOK",
+                                            "localName": "Infok",
+                                            "type": "domain",
+                                            "tipologies": [
+                                                {
+                                                    "idName": "DTY_ENQUESTA",
+                                                    "localName": "Enquesta",
+                                                    "defaultDomainIdName": "INFOK",
+                                                    "type": "tipology"
+                                                },
+                                                {
+                                                    "idName": "DTY_GALERIA",
+                                                    "localName": "Galeria Fotos",
+                                                    "defaultDomainIdName": "INFOK",
+                                                    "type": "tipology"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "idName": "KRK",
+                                            "localName": "Karakia",
+                                            "type": "domain"
+                                        },
+                                        {
+                                            "idName": "KM3",
+                                            "localName": "Km 33",
+                                            "type": "domain",
+                                            "tipologies": [
+                                                {
+                                                    "idName": "DTY_CONCURS",
+                                                    "localName": "Concurs",
+                                                    "defaultDomainIdName": "KM3",
+                                                    "type": "tipology"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "idName": "LMT",
+                                            "localName": "La marató",
+                                            "type": "domain",
+                                            "tipologies": [
+                                                {
+                                                    "idName": "DTY_CONCURS",
+                                                    "localName": "Concurs",
+                                                    "defaultDomainIdName": "LMT",
+                                                    "type": "tipology"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "idName": "RIE",
+                                            "localName": "La Riera",
+                                            "type": "domain"
+                                        },
+                                        {
+                                            "idName": "MEA",
+                                            "localName": "Medi Ambient",
+                                            "type": "domain",
+                                            "tipologies": [
+                                                {
+                                                    "idName": "DTY_CONCURS",
+                                                    "localName": "Concurs",
+                                                    "defaultDomainIdName": "MEA",
+                                                    "type": "tipology"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "idName": "PROG2",
+                                    "localName": "N-Z",
+                                    "type": "domain",
+                                    "subDomains": [
+                                        {
+                                            "idName": "PRL",
+                                            "localName": "Parlament",
+                                            "type": "domain"
+                                        },
+                                        {
+                                            "idName": "POL",
+                                            "localName": "Polònia",
+                                            "type": "domain",
+                                            "tipologies": [
+                                                {
+                                                    "idName": "DTY_ENQUESTA",
+                                                    "localName": "Enquesta",
+                                                    "defaultDomainIdName": "POL",
+                                                    "type": "tipology"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "idName": "QDN",
+                                            "localName": "Quarts de Nou",
+                                            "type": "domain",
+                                            "tipologies": [
+                                                {
+                                                    "idName": "DTY_CONCURS",
+                                                    "localName": "Concurs",
+                                                    "defaultDomainIdName": "QDN",
+                                                    "type": "tipology"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "idName": "QQC",
+                                            "localName": "Quèquicom",
+                                            "type": "domain"
+                                        },
+                                        {
+                                            "idName": "UMC",
+                                            "localName": "Una mà de contes",
+                                            "type": "domain"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "idName": "SAL",
+                            "localName": "Sales TVC",
+                            "type": "domain",
+                            "tipologies": [
+                                {
+                                    "idName": "DTY_VIDEO_MM",
+                                    "localName": "Vídeo",
+                                    "defaultDomainIdName": "SAL",
+                                    "type": "tipology"
+                                },
+                                {
+                                    "idName": "SAL_AWARD",
+                                    "localName": "Awards",
+                                    "defaultDomainIdName": "SAL",
+                                    "type": "tipology"
+                                },
+                                {
+                                    "idName": "SAL_DESTACAT",
+                                    "localName": "Destacat",
+                                    "defaultDomainIdName": "SAL",
+                                    "type": "tipology"
+                                },
+                                {
+                                    "idName": "SAL_FITXA",
+                                    "localName": "Fitxa producció",
+                                    "defaultDomainIdName": "SAL",
+                                    "type": "tipology"
+                                },
+                                {
+                                    "idName": "SAL_NEWS",
+                                    "localName": "News",
+                                    "defaultDomainIdName": "SAL",
+                                    "type": "tipology"
+                                }
+                            ]
+                        },
+                        {
+                            "idName": "SVTVC",
+                            "localName": "Serveis TVC",
+                            "type": "domain",
+                            "subDomains": [
+                                {
+                                    "idName": "DCOP",
+                                    "localName": "Dpt Copros TVC",
+                                    "type": "domain"
+                                }
+                            ]
+                        },
+                        {
+                            "idName": "PRESS",
+                            "localName": "Web premsa TVC",
+                            "type": "domain"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "idName": "EMI",
+            "localName": "Emissions",
+            "type": "domain",
+            "tipologies": [
+                {
+                    "idName": "EMI_CAPITOL",
+                    "localName": "Capitols",
+                    "defaultDomainIdName": "EMI",
+                    "type": "tipology"
+                },
+                {
+                    "idName": "EMI_EMISSIO",
+                    "localName": "Emissions",
+                    "defaultDomainIdName": "EMI",
+                    "type": "tipology"
+                },
+                {
+                    "idName": "EMI_PRODUCCIO",
+                    "localName": "Produccions",
+                    "defaultDomainIdName": "EMI",
+                    "type": "tipology"
+                },
+                {
+                    "idName": "EMI_PROGRAMA",
+                    "localName": "Programes d'Emissió",
+                    "defaultDomainIdName": "EMI",
+                    "type": "tipology"
+                },
+                {
+                    "idName": "PTVC_PROGRAMA",
+                    "localName": "Programa vídeos",
+                    "defaultDomainIdName": "EMI",
+                    "type": "tipology"
+                }
+            ]
+        },
+        {
+            "idName": "MAP",
+            "localName": "Mapa Web",
+            "type": "domain",
+            "tipologies": [
+                {
+                    "idName": "MAP_TREE",
+                    "localName": "Arbre",
+                    "defaultDomainIdName": "MAP",
+                    "type": "tipology"
+                },
+                {
+                    "idName": "MAP_LAYOUT",
+                    "localName": "Layout",
+                    "defaultDomainIdName": "MAP",
+                    "type": "tipology"
+                },
+                {
+                    "idName": "MAP_NODE",
+                    "localName": "Node",
+                    "defaultDomainIdName": "MAP",
+                    "type": "tipology"
+                }
+            ]
+        },
+        {
+            "idName": "PTV3",
+            "localName": "programesTv3",
+            "type": "domain",
+            "tipologies": [
+                {
+                    "idName": "DTY_GALERIA",
+                    "localName": "Galeria Fotos",
+                    "defaultDomainIdName": "PTV3",
+                    "type": "tipology"
+                }
+            ]
+        },
+        {
+            "idName": "PUC",
+            "localName": "Portal CCMA",
+            "type": "domain",
+            "subDomains": [
+                {
+                    "idName": "PUCM",
+                    "localName": "Catalunya Música",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "DTY_COLLECCIO",
+                            "localName": "Col·lecció",
+                            "defaultDomainIdName": "PUCM",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_DESTACAT",
+                            "localName": "Destacats",
+                            "defaultDomainIdName": "PUCM",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_EMBED",
+                            "localName": "Embed",
+                            "defaultDomainIdName": "PUCM",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_SECCIO",
+                            "localName": "Secció",
+                            "defaultDomainIdName": "PUCM",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_VIDEO_MM",
+                            "localName": "Vídeo",
+                            "defaultDomainIdName": "PUCM",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícia",
+                            "defaultDomainIdName": "PUCM",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_AUDIO_MM",
+                            "localName": "Àudio",
+                            "defaultDomainIdName": "PUCM",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_PROGRAMA",
+                            "localName": "Programa àudios",
+                            "defaultDomainIdName": "PUCM",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "PUCR",
+                    "localName": "Catalunya Ràdio",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "DTY_COLLECCIO",
+                            "localName": "Col·lecció",
+                            "defaultDomainIdName": "PUCR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_DESTACAT",
+                            "localName": "Destacats",
+                            "defaultDomainIdName": "PUCR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_EMBED",
+                            "localName": "Embed",
+                            "defaultDomainIdName": "PUCR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ENQUESTA",
+                            "localName": "Enquesta",
+                            "defaultDomainIdName": "PUCR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ESNOTICIA",
+                            "localName": "És Notícia",
+                            "defaultDomainIdName": "PUCR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ESPECIAL",
+                            "localName": "Especials",
+                            "defaultDomainIdName": "PUCR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_GALERIA",
+                            "localName": "Galeria Fotos",
+                            "defaultDomainIdName": "PUCR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_SECCIO",
+                            "localName": "Secció",
+                            "defaultDomainIdName": "PUCR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_SECCIOESPECI",
+                            "localName": "Secció d'especial",
+                            "defaultDomainIdName": "PUCR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_SUPERDESTACA",
+                            "localName": "Súper destacat",
+                            "defaultDomainIdName": "PUCR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_VIDEO_MM",
+                            "localName": "Vídeo",
+                            "defaultDomainIdName": "PUCR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_AUTOR",
+                            "localName": "Autors",
+                            "defaultDomainIdName": "PUCR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_BLOG",
+                            "localName": "Blogs",
+                            "defaultDomainIdName": "PUCR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícia",
+                            "defaultDomainIdName": "PUCR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_AUDIO_MM",
+                            "localName": "Àudio",
+                            "defaultDomainIdName": "PUCR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_PROGRAMA",
+                            "localName": "Programa àudios",
+                            "defaultDomainIdName": "PUCR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_SECCIO",
+                            "localName": "Seccions de programes",
+                            "defaultDomainIdName": "PUCR",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "PUCC",
+                    "localName": "Ccma",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "DTY_ESPECIAL",
+                            "localName": "Especials",
+                            "defaultDomainIdName": "PUCC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_SECCIO",
+                            "localName": "Secció",
+                            "defaultDomainIdName": "PUCC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_SIGNATURA",
+                            "localName": "Signatura",
+                            "defaultDomainIdName": "PUCC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_VIDEO_MM",
+                            "localName": "Vídeo",
+                            "defaultDomainIdName": "PUCC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícia",
+                            "defaultDomainIdName": "PUCC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_AUDIO_MM",
+                            "localName": "Àudio",
+                            "defaultDomainIdName": "PUCC",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "PUCUI",
+                    "localName": "Cuines",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "DTY_COLLECCIO",
+                            "localName": "Col·lecció",
+                            "defaultDomainIdName": "PUCUI",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_EMBED",
+                            "localName": "Embed",
+                            "defaultDomainIdName": "PUCUI",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ESNOTICIA",
+                            "localName": "És Notícia",
+                            "defaultDomainIdName": "PUCUI",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ESPECIAL",
+                            "localName": "Especials",
+                            "defaultDomainIdName": "PUCUI",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_RECEPTA",
+                            "localName": "Receptes",
+                            "defaultDomainIdName": "PUCUI",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "PTVC_PROGRAMA",
+                            "localName": "Programa vídeos",
+                            "defaultDomainIdName": "PUCUI",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_PROGRAMA",
+                            "localName": "Programa àudios",
+                            "defaultDomainIdName": "PUCUI",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "CULTU",
+                    "localName": "Cultura",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "DTY_ESPECIAL",
+                            "localName": "Especials",
+                            "defaultDomainIdName": "CULTU",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícia",
+                            "defaultDomainIdName": "CULTU",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "PTVC_PROGRAMA",
+                            "localName": "Programa vídeos",
+                            "defaultDomainIdName": "CULTU",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_AUDIO_MM",
+                            "localName": "Àudio",
+                            "defaultDomainIdName": "CULTU",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_PROGRAMA",
+                            "localName": "Programa àudios",
+                            "defaultDomainIdName": "CULTU",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "PUDOC",
+                    "localName": "Documentals",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "DTY_DESTACAT",
+                            "localName": "Destacats",
+                            "defaultDomainIdName": "PUDOC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_VIDEO_MM",
+                            "localName": "Vídeo",
+                            "defaultDomainIdName": "PUDOC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícia",
+                            "defaultDomainIdName": "PUDOC",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "MET",
+                    "localName": "El Temps (méteo)",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "DTY_COLLECCIO",
+                            "localName": "Col·lecció",
+                            "defaultDomainIdName": "MET",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_DESTACAT",
+                            "localName": "Destacats",
+                            "defaultDomainIdName": "MET",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_EMBED",
+                            "localName": "Embed",
+                            "defaultDomainIdName": "MET",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ENQUESTA",
+                            "localName": "Enquesta",
+                            "defaultDomainIdName": "MET",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ESNOTICIA",
+                            "localName": "És Notícia",
+                            "defaultDomainIdName": "MET",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ESPECIAL",
+                            "localName": "Especials",
+                            "defaultDomainIdName": "MET",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_GALERIA",
+                            "localName": "Galeria Fotos",
+                            "defaultDomainIdName": "MET",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_SECCIOESPECI",
+                            "localName": "Secció d'especial",
+                            "defaultDomainIdName": "MET",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_SECCIOWEB",
+                            "localName": "Seccio Web",
+                            "defaultDomainIdName": "MET",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_VIDEO_MM",
+                            "localName": "Vídeo",
+                            "defaultDomainIdName": "MET",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícia",
+                            "defaultDomainIdName": "MET",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_AUDIO_MM",
+                            "localName": "Àudio",
+                            "defaultDomainIdName": "MET",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "PUE3",
+                    "localName": "Esport3",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "DEBAT_MINUT",
+                            "localName": "Entrada minut",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DEBAT_MINUTAMINU",
+                            "localName": "Minut a minut",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_COLLECCIO",
+                            "localName": "Col·lecció",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_DESTACAT",
+                            "localName": "Destacats",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_EMBED",
+                            "localName": "Embed",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ENQUESTA",
+                            "localName": "Enquesta",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ESNOTICIA",
+                            "localName": "És Notícia",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ESPECIAL",
+                            "localName": "Especials",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_GALERIA",
+                            "localName": "Galeria Fotos",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_GRAFICA",
+                            "localName": "Gràfica",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_PARTIT",
+                            "localName": "Partits",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_SECCIOESPECI",
+                            "localName": "Secció d'especial",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_VIDEO_MM",
+                            "localName": "Vídeo",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_AUTOR",
+                            "localName": "Autors",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_BLOG",
+                            "localName": "Blogs",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícia",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "PTVC_PROGRAMA",
+                            "localName": "Programa vídeos",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_AUDIO_MM",
+                            "localName": "Àudio",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_PROGRAMA",
+                            "localName": "Programa àudios",
+                            "defaultDomainIdName": "PUE3",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "EVA",
+                    "localName": "Eva",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícia",
+                            "defaultDomainIdName": "EVA",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "PU_CO",
+                    "localName": "Ficció i cinema",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícia",
+                            "defaultDomainIdName": "PU_CO",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "PUICA",
+                    "localName": "iCat",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "DTY_COLLECCIO",
+                            "localName": "Col·lecció",
+                            "defaultDomainIdName": "PUICA",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_DESTACAT",
+                            "localName": "Destacats",
+                            "defaultDomainIdName": "PUICA",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_EMBED",
+                            "localName": "Embed",
+                            "defaultDomainIdName": "PUICA",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_SECCIO",
+                            "localName": "Secció",
+                            "defaultDomainIdName": "PUICA",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_VIDEO_MM",
+                            "localName": "Vídeo",
+                            "defaultDomainIdName": "PUICA",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_AUTOR",
+                            "localName": "Autors",
+                            "defaultDomainIdName": "PUICA",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícia",
+                            "defaultDomainIdName": "PUICA",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_AUDIO_MM",
+                            "localName": "Àudio",
+                            "defaultDomainIdName": "PUICA",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_PROGRAMA",
+                            "localName": "Programa àudios",
+                            "defaultDomainIdName": "PUICA",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "PULES",
+                    "localName": "Llibre d'Estil",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "DTY_SECCIO",
+                            "localName": "Secció",
+                            "defaultDomainIdName": "PULES",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícia",
+                            "defaultDomainIdName": "PULES",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "PUMAR",
+                    "localName": "Marató",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "DTY_CANCO",
+                            "localName": "Cançó",
+                            "defaultDomainIdName": "PUMAR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_COLLECCIO",
+                            "localName": "Col·lecció",
+                            "defaultDomainIdName": "PUMAR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_DESTACAT",
+                            "localName": "Destacats",
+                            "defaultDomainIdName": "PUMAR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_DISC",
+                            "localName": "Disc",
+                            "defaultDomainIdName": "PUMAR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_EDICIO",
+                            "localName": "Edició",
+                            "defaultDomainIdName": "PUMAR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_EMBED",
+                            "localName": "Embed",
+                            "defaultDomainIdName": "PUMAR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_GALERIA",
+                            "localName": "Galeria Fotos",
+                            "defaultDomainIdName": "PUMAR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_SECCIO",
+                            "localName": "Secció",
+                            "defaultDomainIdName": "PUMAR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_VIDEO_MM",
+                            "localName": "Vídeo",
+                            "defaultDomainIdName": "PUMAR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícia",
+                            "defaultDomainIdName": "PUMAR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_AUDIO_MM",
+                            "localName": "Àudio",
+                            "defaultDomainIdName": "PUMAR",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "PUMAQ",
+                    "localName": "Màrqueting",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "DTY_SECCIO",
+                            "localName": "Secció",
+                            "defaultDomainIdName": "PUMAQ",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "N324",
+                    "localName": "Notícies 324",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícies",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DEBAT_MINUT",
+                            "localName": "Entrada minut",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DEBAT_MINUTAMINU",
+                            "localName": "Minut a minut",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_COLLECCIO",
+                            "localName": "Col·lecció",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_DESTACAT",
+                            "localName": "Destacats",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_DESTACATLIVE",
+                            "localName": "Està Passant",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_EMBED",
+                            "localName": "Embed",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ENQUESTA",
+                            "localName": "Enquesta",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ESNOTICIA",
+                            "localName": "És Notícia",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ESPECIAL",
+                            "localName": "Especials",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_GALERIA",
+                            "localName": "Galeria Fotos",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_SECCIOESPECI",
+                            "localName": "Secció d'especial",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_SECCIOWEB",
+                            "localName": "Seccio Web",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_VIDEO_MM",
+                            "localName": "Vídeo",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_AUTOR",
+                            "localName": "Autors",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_BLOG",
+                            "localName": "Blogs",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "PTVC_PROGRAMA",
+                            "localName": "Programa vídeos",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_AUDIO_MM",
+                            "localName": "Àudio",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_PROGRAMA",
+                            "localName": "Programa àudios",
+                            "defaultDomainIdName": "N324",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "PUPUB",
+                    "localName": "Publicitat",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "DTY_DESTACAT",
+                            "localName": "Destacats",
+                            "defaultDomainIdName": "PUPUB",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_EMBED",
+                            "localName": "Embed",
+                            "defaultDomainIdName": "PUPUB",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícia",
+                            "defaultDomainIdName": "PUPUB",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "PURS",
+                    "localName": "RS",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "DTY_COLLECCIO",
+                            "localName": "Col·lecció",
+                            "defaultDomainIdName": "PURS",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_DESTACAT",
+                            "localName": "Destacats",
+                            "defaultDomainIdName": "PURS",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_SECCIO",
+                            "localName": "Secció",
+                            "defaultDomainIdName": "PURS",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_SUPERDESTACA",
+                            "localName": "Súper destacat",
+                            "defaultDomainIdName": "PURS",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_VIDEO_MM",
+                            "localName": "Vídeo",
+                            "defaultDomainIdName": "PURS",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícia",
+                            "defaultDomainIdName": "PURS",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_AUDIO_MM",
+                            "localName": "Àudio",
+                            "defaultDomainIdName": "PURS",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "PUSP",
+                    "localName": "Sala Premsa",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícia",
+                            "defaultDomainIdName": "PUSP",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "PUSAL",
+                    "localName": "Sales",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "DTY_DESTACAT",
+                            "localName": "Destacats",
+                            "defaultDomainIdName": "PUSAL",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_GALERIA",
+                            "localName": "Galeria Fotos",
+                            "defaultDomainIdName": "PUSAL",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_VIDEO_MM",
+                            "localName": "Vídeo",
+                            "defaultDomainIdName": "PUSAL",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "SAL_AWARD",
+                            "localName": "Awards",
+                            "defaultDomainIdName": "PUSAL",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "SAL_FITXA",
+                            "localName": "Fitxa producció",
+                            "defaultDomainIdName": "PUSAL",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "SAL_NEWS",
+                            "localName": "News",
+                            "defaultDomainIdName": "PUSAL",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "PUS3",
+                    "localName": "Super 3",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "DEBAT_MINUT",
+                            "localName": "Entrada minut",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DEBAT_MINUTAMINU",
+                            "localName": "Minut a minut",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_APP",
+                            "localName": "Apps",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_CANCO",
+                            "localName": "Cançó",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_COLLECCIO",
+                            "localName": "Col·lecció",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_DESTACAT",
+                            "localName": "Destacats",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_DISC",
+                            "localName": "Disc",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_EMBED",
+                            "localName": "Embed",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ENQUESTA",
+                            "localName": "Enquesta",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ESNOTICIA",
+                            "localName": "És Notícia",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ESPECIAL",
+                            "localName": "Especials",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_GALERIA",
+                            "localName": "Galeria Fotos",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_GMAP",
+                            "localName": "Google Maps",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_LLIBRE",
+                            "localName": "Llibre",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_PERSONATGE",
+                            "localName": "Personatge",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_PRODUCTE",
+                            "localName": "Producte",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_REVISTA",
+                            "localName": "Revista",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_VIDEO_MM",
+                            "localName": "Vídeo",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_BLOG",
+                            "localName": "Blogs",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícia",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "PTVC_PROGRAMA",
+                            "localName": "Programa vídeos",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "SP3_ACTIVITA",
+                            "localName": "Activitat",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "SP3_JOC",
+                            "localName": "Jocs",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "WCR_AUDIO_MM",
+                            "localName": "Àudio",
+                            "defaultDomainIdName": "PUS3",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "PUTR",
+                    "localName": "Transparència",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "CCMA_TRANS",
+                            "localName": "Document Transparència",
+                            "defaultDomainIdName": "PUTR",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "TVC",
+                    "localName": "TV3",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "DEBAT_MINUT",
+                            "localName": "Entrada minut",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DEBAT_MINUTAMINU",
+                            "localName": "Minut a minut",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_COLLECCIO",
+                            "localName": "Col·lecció",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_DESTACAT",
+                            "localName": "Destacats",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_EMBED",
+                            "localName": "Embed",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ENQUESTA",
+                            "localName": "Enquesta",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ESNOTICIA",
+                            "localName": "És Notícia",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_ESPECIAL",
+                            "localName": "Especials",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_GALERIA",
+                            "localName": "Galeria Fotos",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_PRODUCTE",
+                            "localName": "Producte",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_RESTAURANT",
+                            "localName": "Restaurant",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_SECCIOESPECI",
+                            "localName": "Secció d'especial",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_SUPERDESTACA",
+                            "localName": "Súper destacat",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_TIRACONTINGU",
+                            "localName": "Tira de continguts",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "DTY_VIDEO_MM",
+                            "localName": "Vídeo",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_AUTOR",
+                            "localName": "Autors",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_BLOG",
+                            "localName": "Blogs",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "NOT_NOTICIA",
+                            "localName": "Notícia",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "PTVC_PROGRAMA",
+                            "localName": "Programa vídeos",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "PTVC_SECCIO",
+                            "localName": "Seccions de programes",
+                            "defaultDomainIdName": "TVC",
+                            "type": "tipology"
+                        }
+                    ]
+                },
+                {
+                    "idName": "EDIR",
+                    "localName": "ésAdir",
+                    "type": "domain",
+                    "tipologies": [
+                        {
+                            "idName": "EDIR_ALLENGUA",
+                            "localName": "Altres Llengües",
+                            "defaultDomainIdName": "EDIR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "EDIR_CONVENCIO",
+                            "localName": "Convencions",
+                            "defaultDomainIdName": "EDIR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "EDIR_DOBLATGE",
+                            "localName": "Doblatge",
+                            "defaultDomainIdName": "EDIR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "EDIR_ENLLAC",
+                            "localName": "Enllaços",
+                            "defaultDomainIdName": "EDIR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "EDIR_ETIQUETA",
+                            "localName": "Etiquetes",
+                            "defaultDomainIdName": "EDIR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "EDIR_GRAMATICA",
+                            "localName": "Gramàtica",
+                            "defaultDomainIdName": "EDIR",
+                            "type": "tipology"
+                        },
+                        {
+                            "idName": "EDIR_LEXIC",
+                            "localName": "Lèxic",
+                            "defaultDomainIdName": "EDIR",
+                            "type": "tipology"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "idName": "SERV1",
+            "localName": "Serveis i usuaris",
+            "type": "domain",
+            "tipologies": [
+                {
+                    "idName": "DTY_CONCURS",
+                    "localName": "Concurs",
+                    "defaultDomainIdName": "SERV1",
+                    "type": "tipology"
+                },
+                {
+                    "idName": "DTY_ENQUESTA",
+                    "localName": "Enquesta",
+                    "defaultDomainIdName": "SERV1",
+                    "type": "tipology"
+                },
+                {
+                    "idName": "DTY_NEWSLETTER",
+                    "localName": "Newsletter",
+                    "defaultDomainIdName": "SERV1",
+                    "type": "tipology"
+                },
+                {
+                    "idName": "DTY_OPINA",
+                    "localName": "Opinions",
+                    "defaultDomainIdName": "SERV1",
+                    "type": "tipology"
+                },
+                {
+                    "idName": "DTY_RECOMANA",
+                    "localName": "Recomanacions",
+                    "defaultDomainIdName": "SERV1",
+                    "type": "tipology"
+                },
+                {
+                    "idName": "DTY_TEST",
+                    "localName": "Test",
+                    "defaultDomainIdName": "SERV1",
+                    "type": "tipology"
+                }
+            ]
+        },
+        {
+            "idName": "SYS",
+            "localName": "Sistema",
+            "type": "domain",
+            "tipologies": [
+                {
+                    "idName": "DTY_INFO",
+                    "localName": "Informació Sistema",
+                    "defaultDomainIdName": "SYS",
+                    "type": "tipology"
+                },
+                {
+                    "idName": "DTY_VIDEO_INTERN",
+                    "localName": "Videos Interns",
+                    "defaultDomainIdName": "SYS",
+                    "type": "tipology"
+                }
+            ]
+        },
+        {
+            "idName": "TV3AC",
+            "localName": "tv3alacarta",
+            "type": "domain",
+            "tipologies": [
+                {
+                    "idName": "DTY_VIDEO_MM",
+                    "localName": "Vídeo",
+                    "defaultDomainIdName": "TV3AC",
+                    "type": "tipology"
+                }
+            ]
+        },
+        {
+            "idName": "WL",
+            "localName": "Whitelist",
+            "type": "domain",
+            "tipologies": [
+                {
+                    "idName": "DTY_BLACKLIST",
+                    "localName": "Whitelist",
+                    "defaultDomainIdName": "WL",
+                    "type": "tipology"
+                }
+            ]
+        }
+    ]
+}
