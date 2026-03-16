@@ -281,7 +281,11 @@ export function AppSidebar() {
 
         <SidebarContent>
           {/* Continguts */}
-          <Collapsible defaultOpen={false} className="group/collapsible">
+          <Collapsible
+            open={openSection === 'continguts'}
+            onOpenChange={(open) => { setOpenSection(open ? 'continguts' : null); if (!open) setContentSearch(''); }}
+            className="group/collapsible"
+          >
             <SidebarGroup>
               <CollapsibleTrigger asChild>
                 <SidebarGroupLabel className="cursor-pointer text-sidebar-foreground/60 hover:text-sidebar-foreground uppercase text-[10px] tracking-widest font-semibold flex items-center gap-2">
@@ -327,6 +331,16 @@ export function AppSidebar() {
                   )}
                 </SidebarGroupContent>
               </CollapsibleContent>
+            </SidebarGroup>
+          </Collapsible>
+
+          {/* Categories */}
+          <Collapsible
+            open={openSection === 'categories'}
+            onOpenChange={(open) => setOpenSection(open ? 'categories' : null)}
+            className="group/collapsible"
+          >
+            <SidebarGroup>
               <CollapsibleTrigger asChild>
                 <SidebarGroupLabel
                   className="cursor-pointer text-sidebar-foreground/60 hover:text-sidebar-foreground uppercase text-[10px] tracking-widest font-semibold flex items-center gap-2"
