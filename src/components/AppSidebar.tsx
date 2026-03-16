@@ -278,7 +278,7 @@ export function AppSidebar() {
           </Collapsible>
 
           {/* Categories — top level section */}
-          <Collapsible defaultOpen className="group/collapsible">
+          <Collapsible defaultOpen={false} className="group/collapsible">
             <SidebarGroup>
               <CollapsibleTrigger asChild>
                 <SidebarGroupLabel
