@@ -12,6 +12,7 @@ import {
   FolderOpen,
   Search,
   Layout,
+  Layers,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import dtyLogo from '@/assets/dty-logo-2.svg';
