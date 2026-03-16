@@ -56,13 +56,17 @@ function SidebarContentDomainNode({
 
   if (collapsed) return null;
 
+  const hasSubDomains = domain.subDomains && domain.subDomains.length > 0;
+  const hasChildren = hasTipologies || hasSubDomains;
+
   return (
     <div>
       <div
         className="group flex items-center gap-1 rounded-md px-1.5 py-1 text-xs text-sidebar-foreground/80 hover:bg-sidebar-accent transition-colors cursor-pointer"
         style={{ paddingLeft: `${level * 12 + 8}px` }}
+        onClick={() => hasChildren && setExpanded(!expanded)}
       >
-        {hasTipologies ? (
+        {hasChildren ? (
           <button
             onClick={(e) => { e.stopPropagation(); setExpanded(!expanded); }}
             className="shrink-0 p-0.5 rounded hover:bg-sidebar-accent"
@@ -75,9 +79,16 @@ function SidebarContentDomainNode({
         <Box className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
         <span className="truncate flex-1">{domain.localName}</span>
       </div>
-      {expanded && hasTipologies && (
+      {expanded && hasChildren && (
         <div>
-          {domain.tipologies!.map((tip, i) => (
+          {hasSubDomains && domain.subDomains!.map((sub) => (
+            <SidebarContentDomainNode
+              key={sub.idName}
+              domain={sub}
+              level={level + 1}
+            />
+          ))}
+          {hasTipologies && domain.tipologies!.map((tip, i) => (
             <div
               key={`${tip.idName}-${i}`}
               className="flex items-center gap-1 rounded-md px-1.5 py-1 text-xs text-sidebar-foreground/60 hover:bg-sidebar-accent transition-colors cursor-pointer"
