@@ -69,9 +69,10 @@ function SidebarContentDomainNode({
   const hasSubDomains = domain.subDomains && domain.subDomains.length > 0;
   const hasChildren = hasTipologies || hasSubDomains;
 
-  // Auto-expand when searching and this branch has matches
   const isSearching = searchQuery.length > 0;
-  const expanded = isSearching ? (hasChildren && domainMatches(domain, searchQuery)) : manualExpanded;
+  // Auto-expand matching branches, but also allow manual expand
+  const autoExpanded = isSearching && hasChildren && domainMatches(domain, searchQuery);
+  const expanded = manualExpanded || autoExpanded;
 
   if (collapsed) return null;
 
@@ -79,27 +80,32 @@ function SidebarContentDomainNode({
   const sortByName = <T extends { localName: string }>(items: T[]) =>
     [...items].sort((a, b) => a.localName.localeCompare(b.localName, 'ca'));
 
+  // Only filter children if auto-expanded by search AND not manually expanded
+  const shouldFilter = isSearching && !manualExpanded;
+
   const filteredSubDomains = sortByName(
-    isSearching && hasSubDomains
+    shouldFilter && hasSubDomains
       ? domain.subDomains!.filter(sub => domainMatches(sub, searchQuery))
       : (domain.subDomains || [])
   );
   const filteredTipologies = sortByName(
-    isSearching && hasTipologies
+    shouldFilter && hasTipologies
       ? domain.tipologies!.filter(t => t.localName.toLowerCase().includes(q))
       : (domain.tipologies || [])
   );
+
+  const toggleManual = () => setManualExpanded(!manualExpanded);
 
   return (
     <div>
       <div
         className="group flex items-center gap-1 rounded-md px-1.5 py-1 text-xs text-sidebar-foreground/80 hover:bg-sidebar-accent transition-colors cursor-pointer"
         style={{ paddingLeft: `${level * 12 + 8}px` }}
-        onClick={() => !isSearching && hasChildren && setManualExpanded(!manualExpanded)}
+        onClick={() => hasChildren && toggleManual()}
       >
         {hasChildren ? (
           <button
-            onClick={(e) => { e.stopPropagation(); if (!isSearching) setManualExpanded(!manualExpanded); }}
+            onClick={(e) => { e.stopPropagation(); toggleManual(); }}
             className="shrink-0 p-0.5 rounded hover:bg-sidebar-accent"
           >
             {expanded ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
