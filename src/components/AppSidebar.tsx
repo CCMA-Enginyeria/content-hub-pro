@@ -40,35 +40,59 @@ import {
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 
+/* ── Helper: check if a domain or any descendant matches the query ── */
+
+function domainMatches(domain: ContentDomain, query: string): boolean {
+  const q = query.toLowerCase();
+  if (domain.localName.toLowerCase().includes(q)) return true;
+  if (domain.idName.toLowerCase().includes(q)) return true;
+  if (domain.tipologies?.some(t => t.localName.toLowerCase().includes(q))) return true;
+  if (domain.subDomains?.some(sub => domainMatches(sub, q))) return true;
+  return false;
+}
+
 /* ── Content domain node for sidebar ── */
 
 function SidebarContentDomainNode({
   domain,
   level = 0,
+  searchQuery = '',
 }: {
   domain: ContentDomain;
   level?: number;
+  searchQuery?: string;
 }) {
-  const [expanded, setExpanded] = useState(false);
+  const [manualExpanded, setManualExpanded] = useState(false);
   const { state } = useSidebar();
   const collapsed = state === 'collapsed';
   const hasTipologies = domain.tipologies && domain.tipologies.length > 0;
+  const hasSubDomains = domain.subDomains && domain.subDomains.length > 0;
+  const hasChildren = hasTipologies || hasSubDomains;
+
+  // Auto-expand when searching and this branch has matches
+  const isSearching = searchQuery.length > 0;
+  const expanded = isSearching ? (hasChildren && domainMatches(domain, searchQuery)) : manualExpanded;
 
   if (collapsed) return null;
 
-  const hasSubDomains = domain.subDomains && domain.subDomains.length > 0;
-  const hasChildren = hasTipologies || hasSubDomains;
+  const q = searchQuery.toLowerCase();
+  const filteredSubDomains = isSearching && hasSubDomains
+    ? domain.subDomains!.filter(sub => domainMatches(sub, searchQuery))
+    : domain.subDomains;
+  const filteredTipologies = isSearching && hasTipologies
+    ? domain.tipologies!.filter(t => t.localName.toLowerCase().includes(q))
+    : domain.tipologies;
 
   return (
     <div>
       <div
         className="group flex items-center gap-1 rounded-md px-1.5 py-1 text-xs text-sidebar-foreground/80 hover:bg-sidebar-accent transition-colors cursor-pointer"
         style={{ paddingLeft: `${level * 12 + 8}px` }}
-        onClick={() => hasChildren && setExpanded(!expanded)}
+        onClick={() => !isSearching && hasChildren && setManualExpanded(!manualExpanded)}
       >
         {hasChildren ? (
           <button
-            onClick={(e) => { e.stopPropagation(); setExpanded(!expanded); }}
+            onClick={(e) => { e.stopPropagation(); if (!isSearching) setManualExpanded(!manualExpanded); }}
             className="shrink-0 p-0.5 rounded hover:bg-sidebar-accent"
           >
             {expanded ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
@@ -79,16 +103,17 @@ function SidebarContentDomainNode({
         <Box className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
         <span className="truncate flex-1">{domain.localName}</span>
       </div>
-      {expanded && hasChildren && (
+      {expanded && (
         <div>
-          {hasSubDomains && domain.subDomains!.map((sub) => (
+          {filteredSubDomains?.map((sub) => (
             <SidebarContentDomainNode
               key={sub.idName}
               domain={sub}
               level={level + 1}
+              searchQuery={searchQuery}
             />
           ))}
-          {hasTipologies && domain.tipologies!.map((tip, i) => (
+          {filteredTipologies?.map((tip, i) => (
             <div
               key={`${tip.idName}-${i}`}
               className="flex items-center gap-1 rounded-md px-1.5 py-1 text-xs text-sidebar-foreground/60 hover:bg-sidebar-accent transition-colors cursor-pointer"
