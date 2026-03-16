@@ -249,7 +249,7 @@ export function AppSidebar() {
 
         <SidebarContent>
           {/* Continguts */}
-          <Collapsible defaultOpen className="group/collapsible">
+          <Collapsible defaultOpen={false} className="group/collapsible">
             <SidebarGroup>
               <CollapsibleTrigger asChild>
                 <SidebarGroupLabel className="cursor-pointer text-sidebar-foreground/60 hover:text-sidebar-foreground uppercase text-[10px] tracking-widest font-semibold flex items-center gap-2">
