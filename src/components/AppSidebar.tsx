@@ -117,10 +117,12 @@ function SidebarCategoryNode({
 
 function SidebarSection({
   label,
+  icon: Icon,
   items,
   defaultOpen = true,
 }: {
   label: string;
+  icon?: React.ElementType;
   items: { title: string; url: string; icon: React.ElementType }[];
   defaultOpen?: boolean;
 }) {
@@ -131,7 +133,8 @@ function SidebarSection({
     <Collapsible defaultOpen={defaultOpen} className="group/collapsible">
       <SidebarGroup>
         <CollapsibleTrigger asChild>
-          <SidebarGroupLabel className="cursor-pointer text-sidebar-foreground/60 hover:text-sidebar-foreground uppercase text-[10px] tracking-widest font-semibold flex items-center justify-between">
+          <SidebarGroupLabel className="cursor-pointer text-sidebar-foreground/60 hover:text-sidebar-foreground uppercase text-[10px] tracking-widest font-semibold flex items-center gap-2">
+            {!collapsed && Icon && <Icon className="h-3.5 w-3.5" />}
             {!collapsed && label}
             {!collapsed && (
               <ChevronDown className="h-3.5 w-3.5 transition-transform group-data-[state=closed]/collapsible:rotate-[-90deg]" />
