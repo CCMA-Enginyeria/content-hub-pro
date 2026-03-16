@@ -267,6 +267,10 @@ export function AppSidebar() {
     return topLevelDomains.filter(d => domainMatches(d, contentSearch));
   }, [contentSearch]);
 
+  // Skip "Tags" root node — show its children as top-level
+  const tagsRoot = rootCategories.find((c) => c.name === 'Tags');
+  const topLevelCategories = tagsRoot ? getChildren(tagsRoot.id) : rootCategories;
+
   return (
     <Sidebar collapsible="icon">
         <SidebarHeader className="p-4">
