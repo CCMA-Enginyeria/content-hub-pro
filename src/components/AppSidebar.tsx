@@ -76,12 +76,19 @@ function SidebarContentDomainNode({
   if (collapsed) return null;
 
   const q = searchQuery.toLowerCase();
-  const filteredSubDomains = isSearching && hasSubDomains
-    ? domain.subDomains!.filter(sub => domainMatches(sub, searchQuery))
-    : domain.subDomains;
-  const filteredTipologies = isSearching && hasTipologies
-    ? domain.tipologies!.filter(t => t.localName.toLowerCase().includes(q))
-    : domain.tipologies;
+  const sortByName = <T extends { localName: string }>(items: T[]) =>
+    [...items].sort((a, b) => a.localName.localeCompare(b.localName, 'ca'));
+
+  const filteredSubDomains = sortByName(
+    isSearching && hasSubDomains
+      ? domain.subDomains!.filter(sub => domainMatches(sub, searchQuery))
+      : (domain.subDomains || [])
+  );
+  const filteredTipologies = sortByName(
+    isSearching && hasTipologies
+      ? domain.tipologies!.filter(t => t.localName.toLowerCase().includes(q))
+      : (domain.tipologies || [])
+  );
 
   return (
     <div>
@@ -261,10 +268,12 @@ export function AppSidebar() {
   const [openSection, setOpenSection] = useState<'continguts' | 'categories' | null>(null);
   const [contentSearch, setContentSearch] = useState('');
 
-  // Filter top-level domains when searching
+  // Filter and sort top-level domains
   const filteredDomains = useMemo(() => {
-    if (!contentSearch) return topLevelDomains;
-    return topLevelDomains.filter(d => domainMatches(d, contentSearch));
+    const list = contentSearch
+      ? topLevelDomains.filter(d => domainMatches(d, contentSearch))
+      : topLevelDomains;
+    return [...list].sort((a, b) => a.localName.localeCompare(b.localName, 'ca'));
   }, [contentSearch]);
 
   // Skip "Tags" root node — show its children as top-level
