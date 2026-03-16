@@ -258,7 +258,7 @@ export function AppSidebar() {
   const collapsed = state === 'collapsed';
   const navigate = useNavigate();
   const { rootCategories, getChildren } = useCategoriesContext();
-  const [categoriesOpen, setCategoriesOpen] = useState(false);
+  const [openSection, setOpenSection] = useState<'continguts' | 'categories' | null>(null);
   const [contentSearch, setContentSearch] = useState('');
 
   // Filter top-level domains when searching
