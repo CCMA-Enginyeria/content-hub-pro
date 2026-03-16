@@ -14,7 +14,7 @@ import {
   Layout,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import dtyLogo from '@/assets/dty-logo.svg';
+import dtyLogo from '@/assets/dty-logo-2.svg';
 import { NavLink } from '@/components/NavLink';
 import { useCategoriesContext } from '@/contexts/CategoriesContext';
 import { Category } from '@/types/category';
