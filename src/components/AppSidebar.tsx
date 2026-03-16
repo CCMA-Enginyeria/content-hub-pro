@@ -5,8 +5,6 @@ import {
   Globe,
   FileText,
   Radio,
-  Users,
-  Settings,
   Star,
   ChevronDown,
   ChevronRight,
@@ -43,11 +41,6 @@ const otherContentItems = [
   { title: 'Emissions', url: '/emissions', icon: Radio },
   { title: 'Mapa Web', url: '/mapa-web', icon: Globe },
   { title: 'programesTv3', url: '/programes-tv3', icon: Tv },
-];
-
-const systemItems = [
-  { title: 'Serveis i usuaris', url: '/serveis', icon: Users },
-  { title: 'Sistema', url: '/sistema', icon: Settings },
 ];
 
 /* ── Mini tree node for sidebar ── */
@@ -268,8 +261,6 @@ export function AppSidebar() {
               </CollapsibleContent>
             </SidebarGroup>
           </Collapsible>
-
-          <SidebarSection label="Sistema" items={systemItems} defaultOpen={false} />
         </SidebarContent>
 
         <SidebarFooter className="p-3">
