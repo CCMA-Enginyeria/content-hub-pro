@@ -11,6 +11,7 @@ import {
   Folder,
   FolderOpen,
   Search,
+  Layout,
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import dtyLogo from '@/assets/dty-logo.svg';
@@ -37,9 +38,8 @@ import {
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 
-const otherContentItems = [
+const contingutItems = [
   { title: 'Emissions', url: '/emissions', icon: Radio },
-  { title: 'Mapa Web', url: '/mapa-web', icon: Globe },
   { title: 'programesTv3', url: '/programes-tv3', icon: Tv },
 ];
 
@@ -188,11 +188,18 @@ export function AppSidebar() {
         </SidebarHeader>
 
         <SidebarContent>
+          {/* Continguts */}
+          <SidebarSection label="Continguts" items={contingutItems} defaultOpen />
+
+          {/* Categories — top level section */}
           <Collapsible defaultOpen className="group/collapsible">
             <SidebarGroup>
               <CollapsibleTrigger asChild>
-                <SidebarGroupLabel className="cursor-pointer text-sidebar-foreground/60 hover:text-sidebar-foreground uppercase text-[10px] tracking-widest font-semibold flex items-center justify-between">
-                  {!collapsed && 'Continguts'}
+                <SidebarGroupLabel
+                  className="cursor-pointer text-sidebar-foreground/60 hover:text-sidebar-foreground uppercase text-[10px] tracking-widest font-semibold flex items-center justify-between"
+                  onClick={() => navigate('/categories')}
+                >
+                  {!collapsed && 'Categories'}
                   {!collapsed && (
                     <ChevronDown className="h-3.5 w-3.5 transition-transform group-data-[state=closed]/collapsible:rotate-[-90deg]" />
                   )}
@@ -200,67 +207,64 @@ export function AppSidebar() {
               </CollapsibleTrigger>
               <CollapsibleContent>
                 <SidebarGroupContent>
-                  <SidebarMenu>
-                    {/* Categories with expandable tree */}
-                    <SidebarMenuItem>
-                      <SidebarMenuButton asChild>
-                        <div
-                          className="flex items-center gap-2.5 rounded-md px-2.5 py-2 text-sm text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-foreground transition-colors cursor-pointer"
-                          onClick={() => {
-                            setCategoriesOpen(!categoriesOpen);
-                            navigate('/categories');
-                          }}
-                        >
-                          <Tags className="h-4 w-4 shrink-0" />
-                          {!collapsed && <span className="flex-1">Categories</span>}
-                          {!collapsed && (
-                            <ChevronDown
-                              className={`h-3.5 w-3.5 transition-transform ${!categoriesOpen ? '-rotate-90' : ''}`}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setCategoriesOpen(!categoriesOpen);
-                              }}
-                            />
-                          )}
-                        </div>
-                      </SidebarMenuButton>
-                      {categoriesOpen && !collapsed && (
-                        <div className="mt-0.5 mb-1">
-                          <div className="max-h-[40vh] overflow-y-auto scrollbar-thin">
-                            {topLevelCategories.map((cat) => (
-                                <SidebarCategoryNode
-                                  key={cat.id}
-                                  category={cat}
-                                  getChildren={getChildren}
-                                  navigate={navigate}
-                                />
-                              ))}
-                          </div>
-                        </div>
-                      )}
-                    </SidebarMenuItem>
-
-                    {/* Other content items */}
-                    {otherContentItems.map((item) => (
-                      <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton asChild>
-                          <NavLink
-                            to={item.url}
-                            end
-                            className="flex items-center gap-2.5 rounded-md px-2.5 py-2 text-sm text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-foreground transition-colors"
-                            activeClassName="bg-sidebar-accent text-sidebar-primary font-medium"
-                          >
-                            <item.icon className="h-4 w-4 shrink-0" />
-                            {!collapsed && <span>{item.title}</span>}
-                          </NavLink>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    ))}
-                  </SidebarMenu>
+                  {!collapsed && (
+                    <div className="max-h-[40vh] overflow-y-auto scrollbar-thin">
+                      {topLevelCategories.map((cat) => (
+                        <SidebarCategoryNode
+                          key={cat.id}
+                          category={cat}
+                          getChildren={getChildren}
+                          navigate={navigate}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </SidebarGroupContent>
               </CollapsibleContent>
             </SidebarGroup>
           </Collapsible>
+
+          {/* Frontals */}
+          <SidebarGroup>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild>
+                    <NavLink
+                      to="/frontals"
+                      end
+                      className="flex items-center gap-2.5 rounded-md px-2.5 py-2 text-sm text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-foreground transition-colors"
+                      activeClassName="bg-sidebar-accent text-sidebar-primary font-medium"
+                    >
+                      <Layout className="h-4 w-4 shrink-0" />
+                      {!collapsed && <span>Frontals</span>}
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+
+          {/* Mapa Web */}
+          <SidebarGroup>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton asChild>
+                    <NavLink
+                      to="/mapa-web"
+                      end
+                      className="flex items-center gap-2.5 rounded-md px-2.5 py-2 text-sm text-sidebar-foreground/80 hover:bg-sidebar-accent hover:text-sidebar-foreground transition-colors"
+                      activeClassName="bg-sidebar-accent text-sidebar-primary font-medium"
+                    >
+                      <Globe className="h-4 w-4 shrink-0" />
+                      {!collapsed && <span>Mapa Web</span>}
+                    </NavLink>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
         </SidebarContent>
 
         <SidebarFooter className="p-3">
