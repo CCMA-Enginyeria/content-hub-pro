@@ -5,8 +5,6 @@ import {
   Globe,
   FileText,
   Radio,
-  Users,
-  Settings,
   Star,
   ChevronDown,
   ChevronRight,
