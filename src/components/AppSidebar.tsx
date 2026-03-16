@@ -45,11 +45,6 @@ const otherContentItems = [
   { title: 'programesTv3', url: '/programes-tv3', icon: Tv },
 ];
 
-const systemItems = [
-  { title: 'Serveis i usuaris', url: '/serveis', icon: Users },
-  { title: 'Sistema', url: '/sistema', icon: Settings },
-];
-
 /* ── Mini tree node for sidebar ── */
 
 function SidebarCategoryNode({
