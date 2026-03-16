@@ -238,7 +238,33 @@ export function AppSidebar() {
 
         <SidebarContent>
           {/* Continguts */}
-          <SidebarSection label="Continguts" icon={Layers} items={contingutItems} defaultOpen />
+          <Collapsible defaultOpen className="group/collapsible">
+            <SidebarGroup>
+              <CollapsibleTrigger asChild>
+                <SidebarGroupLabel className="cursor-pointer text-sidebar-foreground/60 hover:text-sidebar-foreground uppercase text-[10px] tracking-widest font-semibold flex items-center gap-2">
+                  {!collapsed && <Layers className="h-3.5 w-3.5" />}
+                  {!collapsed && 'Continguts'}
+                  {!collapsed && (
+                    <ChevronDown className="h-3.5 w-3.5 transition-transform group-data-[state=closed]/collapsible:rotate-[-90deg]" />
+                  )}
+                </SidebarGroupLabel>
+              </CollapsibleTrigger>
+              <CollapsibleContent>
+                <SidebarGroupContent>
+                  {!collapsed && (
+                    <div className="max-h-[40vh] overflow-y-auto scrollbar-thin">
+                      {topLevelDomains.map((domain) => (
+                        <SidebarContentDomainNode
+                          key={domain.idName}
+                          domain={domain}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </SidebarGroupContent>
+              </CollapsibleContent>
+            </SidebarGroup>
+          </Collapsible>
 
           {/* Categories — top level section */}
           <Collapsible defaultOpen className="group/collapsible">
