@@ -268,10 +268,12 @@ export function AppSidebar() {
   const [openSection, setOpenSection] = useState<'continguts' | 'categories' | null>(null);
   const [contentSearch, setContentSearch] = useState('');
 
-  // Filter top-level domains when searching
+  // Filter and sort top-level domains
   const filteredDomains = useMemo(() => {
-    if (!contentSearch) return topLevelDomains;
-    return topLevelDomains.filter(d => domainMatches(d, contentSearch));
+    const list = contentSearch
+      ? topLevelDomains.filter(d => domainMatches(d, contentSearch))
+      : topLevelDomains;
+    return [...list].sort((a, b) => a.localName.localeCompare(b.localName, 'ca'));
   }, [contentSearch]);
 
   // Skip "Tags" root node — show its children as top-level
