@@ -291,23 +291,38 @@ export function AppSidebar() {
               <CollapsibleContent>
                 <SidebarGroupContent>
                   {!collapsed && (
-                    <div className="max-h-[40vh] overflow-y-auto scrollbar-thin">
-                      {topLevelDomains.map((domain) => (
-                        <SidebarContentDomainNode
-                          key={domain.idName}
-                          domain={domain}
-                        />
-                      ))}
+                    <div>
+                      <div className="px-2 py-1.5">
+                        <div className="relative">
+                          <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground" />
+                          <input
+                            type="text"
+                            placeholder="Cercar..."
+                            value={contentSearch}
+                            onChange={(e) => setContentSearch(e.target.value)}
+                            className="w-full rounded-md border border-sidebar-border bg-sidebar px-2 py-1 pl-7 text-xs text-sidebar-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-sidebar-ring"
+                            onClick={(e) => e.stopPropagation()}
+                          />
+                        </div>
+                      </div>
+                      <div className="max-h-[40vh] overflow-y-auto scrollbar-thin">
+                        {filteredDomains.map((domain) => (
+                          <SidebarContentDomainNode
+                            key={domain.idName}
+                            domain={domain}
+                            searchQuery={contentSearch}
+                          />
+                        ))}
+                        {contentSearch && filteredDomains.length === 0 && (
+                          <div className="px-3 py-2 text-xs text-muted-foreground">
+                            Cap resultat per "{contentSearch}"
+                          </div>
+                        )}
+                      </div>
                     </div>
                   )}
                 </SidebarGroupContent>
               </CollapsibleContent>
-            </SidebarGroup>
-          </Collapsible>
-
-          {/* Categories — top level section */}
-          <Collapsible defaultOpen={false} className="group/collapsible">
-            <SidebarGroup>
               <CollapsibleTrigger asChild>
                 <SidebarGroupLabel
                   className="cursor-pointer text-sidebar-foreground/60 hover:text-sidebar-foreground uppercase text-[10px] tracking-widest font-semibold flex items-center gap-2"
