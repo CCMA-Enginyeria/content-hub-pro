@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import {
   Tags,
   Globe,
@@ -40,35 +40,59 @@ import {
   CollapsibleTrigger,
 } from '@/components/ui/collapsible';
 
+/* ── Helper: check if a domain or any descendant matches the query ── */
+
+function domainMatches(domain: ContentDomain, query: string): boolean {
+  const q = query.toLowerCase();
+  if (domain.localName.toLowerCase().includes(q)) return true;
+  if (domain.idName.toLowerCase().includes(q)) return true;
+  if (domain.tipologies?.some(t => t.localName.toLowerCase().includes(q))) return true;
+  if (domain.subDomains?.some(sub => domainMatches(sub, q))) return true;
+  return false;
+}
+
 /* ── Content domain node for sidebar ── */
 
 function SidebarContentDomainNode({
   domain,
   level = 0,
+  searchQuery = '',
 }: {
   domain: ContentDomain;
   level?: number;
+  searchQuery?: string;
 }) {
-  const [expanded, setExpanded] = useState(false);
+  const [manualExpanded, setManualExpanded] = useState(false);
   const { state } = useSidebar();
   const collapsed = state === 'collapsed';
   const hasTipologies = domain.tipologies && domain.tipologies.length > 0;
+  const hasSubDomains = domain.subDomains && domain.subDomains.length > 0;
+  const hasChildren = hasTipologies || hasSubDomains;
+
+  // Auto-expand when searching and this branch has matches
+  const isSearching = searchQuery.length > 0;
+  const expanded = isSearching ? (hasChildren && domainMatches(domain, searchQuery)) : manualExpanded;
 
   if (collapsed) return null;
 
-  const hasSubDomains = domain.subDomains && domain.subDomains.length > 0;
-  const hasChildren = hasTipologies || hasSubDomains;
+  const q = searchQuery.toLowerCase();
+  const filteredSubDomains = isSearching && hasSubDomains
+    ? domain.subDomains!.filter(sub => domainMatches(sub, searchQuery))
+    : domain.subDomains;
+  const filteredTipologies = isSearching && hasTipologies
+    ? domain.tipologies!.filter(t => t.localName.toLowerCase().includes(q))
+    : domain.tipologies;
 
   return (
     <div>
       <div
         className="group flex items-center gap-1 rounded-md px-1.5 py-1 text-xs text-sidebar-foreground/80 hover:bg-sidebar-accent transition-colors cursor-pointer"
         style={{ paddingLeft: `${level * 12 + 8}px` }}
-        onClick={() => hasChildren && setExpanded(!expanded)}
+        onClick={() => !isSearching && hasChildren && setManualExpanded(!manualExpanded)}
       >
         {hasChildren ? (
           <button
-            onClick={(e) => { e.stopPropagation(); setExpanded(!expanded); }}
+            onClick={(e) => { e.stopPropagation(); if (!isSearching) setManualExpanded(!manualExpanded); }}
             className="shrink-0 p-0.5 rounded hover:bg-sidebar-accent"
           >
             {expanded ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
@@ -79,16 +103,17 @@ function SidebarContentDomainNode({
         <Box className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
         <span className="truncate flex-1">{domain.localName}</span>
       </div>
-      {expanded && hasChildren && (
+      {expanded && (
         <div>
-          {hasSubDomains && domain.subDomains!.map((sub) => (
+          {filteredSubDomains?.map((sub) => (
             <SidebarContentDomainNode
               key={sub.idName}
               domain={sub}
               level={level + 1}
+              searchQuery={searchQuery}
             />
           ))}
-          {hasTipologies && domain.tipologies!.map((tip, i) => (
+          {filteredTipologies?.map((tip, i) => (
             <div
               key={`${tip.idName}-${i}`}
               className="flex items-center gap-1 rounded-md px-1.5 py-1 text-xs text-sidebar-foreground/60 hover:bg-sidebar-accent transition-colors cursor-pointer"
@@ -234,6 +259,13 @@ export function AppSidebar() {
   const navigate = useNavigate();
   const { rootCategories, getChildren } = useCategoriesContext();
   const [categoriesOpen, setCategoriesOpen] = useState(false);
+  const [contentSearch, setContentSearch] = useState('');
+
+  // Filter top-level domains when searching
+  const filteredDomains = useMemo(() => {
+    if (!contentSearch) return topLevelDomains;
+    return topLevelDomains.filter(d => domainMatches(d, contentSearch));
+  }, [contentSearch]);
 
   // Skip "Tags" root node — show its children as top-level
   const tagsRoot = rootCategories.find((c) => c.name === 'Tags');
@@ -263,23 +295,38 @@ export function AppSidebar() {
               <CollapsibleContent>
                 <SidebarGroupContent>
                   {!collapsed && (
-                    <div className="max-h-[40vh] overflow-y-auto scrollbar-thin">
-                      {topLevelDomains.map((domain) => (
-                        <SidebarContentDomainNode
-                          key={domain.idName}
-                          domain={domain}
-                        />
-                      ))}
+                    <div>
+                      <div className="px-2 py-1.5">
+                        <div className="relative">
+                          <Search className="absolute left-2 top-1/2 -translate-y-1/2 h-3 w-3 text-muted-foreground" />
+                          <input
+                            type="text"
+                            placeholder="Cercar..."
+                            value={contentSearch}
+                            onChange={(e) => setContentSearch(e.target.value)}
+                            className="w-full rounded-md border border-sidebar-border bg-sidebar px-2 py-1 pl-7 text-xs text-sidebar-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-sidebar-ring"
+                            onClick={(e) => e.stopPropagation()}
+                          />
+                        </div>
+                      </div>
+                      <div className="max-h-[40vh] overflow-y-auto scrollbar-thin">
+                        {filteredDomains.map((domain) => (
+                          <SidebarContentDomainNode
+                            key={domain.idName}
+                            domain={domain}
+                            searchQuery={contentSearch}
+                          />
+                        ))}
+                        {contentSearch && filteredDomains.length === 0 && (
+                          <div className="px-3 py-2 text-xs text-muted-foreground">
+                            Cap resultat per "{contentSearch}"
+                          </div>
+                        )}
+                      </div>
                     </div>
                   )}
                 </SidebarGroupContent>
               </CollapsibleContent>
-            </SidebarGroup>
-          </Collapsible>
-
-          {/* Categories — top level section */}
-          <Collapsible defaultOpen={false} className="group/collapsible">
-            <SidebarGroup>
               <CollapsibleTrigger asChild>
                 <SidebarGroupLabel
                   className="cursor-pointer text-sidebar-foreground/60 hover:text-sidebar-foreground uppercase text-[10px] tracking-widest font-semibold flex items-center gap-2"
