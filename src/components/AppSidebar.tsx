@@ -259,10 +259,13 @@ export function AppSidebar() {
   const navigate = useNavigate();
   const { rootCategories, getChildren } = useCategoriesContext();
   const [categoriesOpen, setCategoriesOpen] = useState(false);
+  const [contentSearch, setContentSearch] = useState('');
 
-  // Skip "Tags" root node — show its children as top-level
-  const tagsRoot = rootCategories.find((c) => c.name === 'Tags');
-  const topLevelCategories = tagsRoot ? getChildren(tagsRoot.id) : rootCategories;
+  // Filter top-level domains when searching
+  const filteredDomains = useMemo(() => {
+    if (!contentSearch) return topLevelDomains;
+    return topLevelDomains.filter(d => domainMatches(d, contentSearch));
+  }, [contentSearch]);
 
   return (
     <Sidebar collapsible="icon">
