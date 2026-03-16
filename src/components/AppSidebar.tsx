@@ -76,12 +76,19 @@ function SidebarContentDomainNode({
   if (collapsed) return null;
 
   const q = searchQuery.toLowerCase();
-  const filteredSubDomains = isSearching && hasSubDomains
-    ? domain.subDomains!.filter(sub => domainMatches(sub, searchQuery))
-    : domain.subDomains;
-  const filteredTipologies = isSearching && hasTipologies
-    ? domain.tipologies!.filter(t => t.localName.toLowerCase().includes(q))
-    : domain.tipologies;
+  const sortByName = <T extends { localName: string }>(items: T[]) =>
+    [...items].sort((a, b) => a.localName.localeCompare(b.localName, 'ca'));
+
+  const filteredSubDomains = sortByName(
+    isSearching && hasSubDomains
+      ? domain.subDomains!.filter(sub => domainMatches(sub, searchQuery))
+      : (domain.subDomains || [])
+  );
+  const filteredTipologies = sortByName(
+    isSearching && hasTipologies
+      ? domain.tipologies!.filter(t => t.localName.toLowerCase().includes(q))
+      : (domain.tipologies || [])
+  );
 
   return (
     <div>
